@@ -6,8 +6,10 @@ const QuoteComponent = ({ id, text, user, voteCount, voteState }: Quote) => {
     console.log(user.profileImg.thumbnailUrl);
     return (
         <div className='quote-card'>
-            <div className="votes">
-
+            <div className="voting">
+                <button><i className="bi bi-chevron-up"></i></button>
+                <span>{voteCount}</span>
+                <button><i className="bi bi-chevron-down"></i></button>
             </div>
             <div className="details">
                 <p>{text}</p>

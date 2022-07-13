@@ -12,6 +12,7 @@ html,
 body,
 #root {
   height: 100%;
+  background-color: white;
 }
 
 .page-wrapper {
@@ -102,9 +103,30 @@ em {
 
   margin: 20px 0px;
 
+  .voting {
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 8px;
+
+    button {
+      background-color: transparent;
+      border: 0px;
+    }
+
+    button:hover {
+      opacity: 0.5;
+      color: rgba(0, 0, 0, 0.15);
+    }
+  }
+
   .user-profile {
     margin-top: 20px;
     height: 35px;
+
     img {
       width: 30px;
       height: 30px;
