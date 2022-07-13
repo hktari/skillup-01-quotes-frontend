@@ -3,81 +3,85 @@
         {
             "id": 1,
             "username": "Wade Warren",
-            "profile_img": {
+            "profileImg": {
                 "thumbnail": "/assets/images/mock/profile-thumbnail2.webp"
             },
-            "karma_points": 154
+            "karmaPoints": 154
         },
         {
             "id": 2,
             "username": "Leslie Alexander",
-            "profile_img": {
+            "profileImg": {
                 "thumbnail": "/assets/images/mock/profile-thumbnail5.webp"
             },
-            "karma_points": 14
+            "karmaPoints": 14
         },
         {
             "id": 3,
             "username": "Eleanor Pena",
-            "profile_img": {
+            "profileImg": {
                 "thumbnail": "/assets/images/mock/profile-thumbnail1.webp"
             },
-            "karma_points": 54
+            "karmaPoints": 54
         },
         {
             "id": 4,
             "username": "John Scott",
-            "profile_img": {
+            "profileImg": {
                 "thumbnail": "/assets/images/mock/profile-thumbnail4.webp"
             },
-            "karma_points": 334
+            "karmaPoints": 334
         }
     ],
     "quotes": [
         {
-            "quote_id": 1,
-            "upvote_count": 275,
-            "vote_state": "upvoted",
+            "id": 1,
+            "voteCount": 275,
+            "text": "The future cannot be predicted, but futures can be invented",
+            "voteState": "upvoted",
             "user": {
                 "id": 1,
                 "username": "Wade Warren",
-                "profile_img": {
+                "profileImg": {
                     "thumbnail": "/assets/images/mock/profile-thumbnail2.webp"
                 }
             }
         },
         {
-            "quote_id": 2,
-            "upvote_count": 175,
-            "vote_state": "downvoted",
+            "id": 2,
+            "voteCount": 175,
+            "text": "What lies bhind us and what lies before us are tniy matters compared to what lies within us.",
+            "voteState": "downvoted",
             "user": {
                 "id": 2,
                 "username": "Leslie Alexander",
-                "profile_img": {
+                "profileImg": {
                     "thumbnail": "/assets/images/mock/profile-thumbnail5.webp"
                 }
             }
         },
         {
-            "quote_id": 3,
-            "upvote_count": 75,
-            "vote_state": "novote",
+            "id": 3,
+            "voteCount": 75,
+            "voteState": "novote",
+            "text": "All our dreams can come true. IF we have the courage to pursue them.",
             "user": {
                 "id": 3,
                 "username": "Eleanor Pena",
-                "profile_img": {
+                "profileImg": {
                     "thumbnail": "/assets/images/mock/profile-thumbnail1.webp"
                 }
             }
         },
         {
-            "quote_id": 4,
-            "upvote_count": 45,
-            "vote_state": "novote",
+            "id": 4,
+            "voteCount": 45,
+            "voteState": "novote",
+            "text": "You miss a 100% of the shots you don't take.",
             "user": {
                 "id": 4,
                 "username": "John Scott",
-                "profile_img": {
+                "profileImg": {
                     "thumbnail": "/assets/images/mock/profile-thumbnail4.webp"
                 }
             }
