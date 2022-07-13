@@ -4,7 +4,7 @@
             "id": 1,
             "username": "Wade Warren",
             "profileImg": {
-                "thumbnail": "/assets/images/mock/profile-thumbnail2.webp"
+                "thumbnailUrl": "/assets/images/mock/profile-thumbnail2.webp"
             },
             "karmaPoints": 154
         },
@@ -12,7 +12,7 @@
             "id": 2,
             "username": "Leslie Alexander",
             "profileImg": {
-                "thumbnail": "/assets/images/mock/profile-thumbnail5.webp"
+                "thumbnailUrl": "/assets/images/mock/profile-thumbnail5.webp"
             },
             "karmaPoints": 14
         },
@@ -20,7 +20,7 @@
             "id": 3,
             "username": "Eleanor Pena",
             "profileImg": {
-                "thumbnail": "/assets/images/mock/profile-thumbnail1.webp"
+                "thumbnailUrl": "/assets/images/mock/profile-thumbnail1.webp"
             },
             "karmaPoints": 54
         },
@@ -28,7 +28,7 @@
             "id": 4,
             "username": "John Scott",
             "profileImg": {
-                "thumbnail": "/assets/images/mock/profile-thumbnail4.webp"
+                "thumbnailUrl": "/assets/images/mock/profile-thumbnail4.webp"
             },
             "karmaPoints": 334
         }
@@ -43,7 +43,7 @@
                 "id": 1,
                 "username": "Wade Warren",
                 "profileImg": {
-                    "thumbnail": "/assets/images/mock/profile-thumbnail2.webp"
+                    "thumbnailUrl": "/assets/images/mock/profile-thumbnail2.webp"
                 }
             }
         },
@@ -56,7 +56,7 @@
                 "id": 2,
                 "username": "Leslie Alexander",
                 "profileImg": {
-                    "thumbnail": "/assets/images/mock/profile-thumbnail5.webp"
+                    "thumbnailUrl": "/assets/images/mock/profile-thumbnail5.webp"
                 }
             }
         },
@@ -69,7 +69,7 @@
                 "id": 3,
                 "username": "Eleanor Pena",
                 "profileImg": {
-                    "thumbnail": "/assets/images/mock/profile-thumbnail1.webp"
+                    "thumbnailUrl": "/assets/images/mock/profile-thumbnail1.webp"
                 }
             }
         },
@@ -82,7 +82,7 @@
                 "id": 4,
                 "username": "John Scott",
                 "profileImg": {
-                    "thumbnail": "/assets/images/mock/profile-thumbnail4.webp"
+                    "thumbnailUrl": "/assets/images/mock/profile-thumbnail4.webp"
                 }
             }
         }

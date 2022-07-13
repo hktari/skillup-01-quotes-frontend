@@ -83,4 +83,39 @@ em {
   font-style: normal;
 }
 
-.text-featured {}
+
+
+/* ---------------------------------- quote --------------------------------- */
+
+.quote-card {
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 16px 32px 16px 16px;
+  gap: 21px;
+
+  /* White */
+  background: #FFFFFF;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 16px;
+
+  margin: 20px 0px;
+
+  .user-profile {
+    margin-top: 20px;
+    height: 35px;
+    img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: fill;
+      margin-right: 10px;
+    }
+
+    span {
+      display: inline-block;
+      line-height: 35px;
+    }
+  }
+}
