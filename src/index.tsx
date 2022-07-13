@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import './custom.scss';
+// import '~bootstrap/dist/js/bootstrap.bundle.js'
+import '../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'
 
 // import 'bootstrap/dist/css/bootstrap.css';
 // // Put any other imports below so that CSS from your
