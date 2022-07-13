@@ -2,15 +2,85 @@
     "users": [
         {
             "id": 1,
-            "title": "json-server",
-            "author": "typicode"
+            "username": "Wade Warren",
+            "profile_img": {
+                "thumbnail": "/assets/images/mock/profile-thumbnail2.jpg"
+            },
+            "karma_points": 154
+        },
+        {
+            "id": 2,
+            "username": "Leslie Alexander",
+            "profile_img": {
+                "thumbnail": "/assets/images/mock/profile-thumbnail5.jpg"
+            },
+            "karma_points": 14
+        },
+        {
+            "id": 3,
+            "username": "Eleanor Pena",
+            "profile_img": {
+                "thumbnail": "/assets/images/mock/profile-thumbnail1.jpg"
+            },
+            "karma_points": 54
+        },
+        {
+            "id": 4,
+            "username": "John Scott",
+            "profile_img": {
+                "thumbnail": "/assets/images/mock/profile-thumbnail4.jpg"
+            },
+            "karma_points": 334
         }
     ],
     "quotes": [
         {
-            "id": 1,
-            "body": "some comment",
-            "postId": 1
-        }
+            "quote_id": 1,
+            "upvote_count": 275,
+            "vote_state": "upvoted",
+            "user": {
+                "id": 1,
+                "username": "Wade Warren",
+                "profile_img": {
+                    "thumbnail": "/assets/images/mock/profile-thumbnail2.jpg"
+                }
+            }
+        },
+        {
+            "quote_id": 2,
+            "upvote_count": 175,
+            "vote_state": "downvoted",
+            "user": {
+                "id": 2,
+                "username": "Leslie Alexander",
+                "profile_img": {
+                    "thumbnail": "/assets/images/mock/profile-thumbnail5.jpg"
+                }
+            }
+        },
+        {
+            "quote_id": 3,
+            "upvote_count": 75,
+            "vote_state": "novote",
+            "user": {
+                "id": 3,
+                "username": "Eleanor Pena",
+                "profile_img": {
+                    "thumbnail": "/assets/images/mock/profile-thumbnail1.jpg"
+                }
+            }
+        },
+        {
+            "quote_id": 4,
+            "upvote_count": 45,
+            "vote_state": "novote",
+            "user": {
+                "id": 4,
+                "username": "John Scott",
+                "profile_img": {
+                    "thumbnail": "/assets/images/mock/profile-thumbnail4.jpg"
+                }
+            }
+        },
     ]
 }
