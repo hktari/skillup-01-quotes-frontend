@@ -1,78 +1,4 @@
-
-$primary-color: #DE8667;
-$alt-color: #EFB467;
-$dark-color: #332D38;
-
-.btn{
-  font-family: 'Raleway';
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 32px;
-}
-.btn-positive{
-  color: white;
-  background-color: $primary-color;
-}
-.btn-alt{
-  color: $primary-color;
-  background-color: white;
-  border: 2px solid #EFB467;
- }
-
-/* ------------------------------- text styles ------------------------------ */
-@font-face {
-  font-family: 'Raleway';
-  src: url('../assets/fonts/raleway/Raleway-VariableFont_wght.ttf') format('ttf') tech('variations'),
-    url('../assets/fonts/raleway/Raleway-VariableFont_wght.ttf') format('ttf-variations');
-  font-weight: 100 900; 
-  font-stretch: 25% 151%;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'Raleway';
-}
-
-h1 {
-  font-weight: 300;
-  font-size: 98px;
-}
-
-h2 {
-  font-weight: 300;
-  font-size: 61px;
-}
-h3{
-  font-weight: 400;
-  font-size: 35px;
-}
-h4{
-  font-weight: 400;
-  font-size: 24px;
-} 
-.text-body{
-  font-family: 'Raleway';
-  font-weight: 400;
-  font-size: 16px;
-}
-strong{
-  font-weight: 700;
-}
-.text-caption{
-  font-family: 'Raleway';
-  font-weight: 400;
-  font-size: 12px;
-}
-
-.headline-4 {
-  font-family: 'Raleway';
-  font-weight: 500;
-}
-
-
+@import './common';
 
 :root {
   --footer-height: 65px
@@ -103,22 +29,6 @@ footer,
   height: var(--footer-height);
 }
 
-main {
-  padding: 0px 35px;
-}
-
-/* -------------------------- landing page new user ------------------------- */
-
-em {
-  color: $primary-color;
-}
-
-.text-featured {}
-
-
-
-
-
 
 
 
@@ -147,3 +57,30 @@ footer {
     }
   }
 }
+
+/* -------------------------- landing page new user ------------------------- */
+
+#welcome {
+  button {
+    width: 137px;
+  }
+}
+
+#featured-quote {
+  margin-top: 80px;
+}
+
+#explore-quotes {
+  margin-top: 60px;
+
+  h5 {
+    margin-top: 56px;
+  }
+}
+
+em {
+  color: $primary-color;
+  font-style: normal;
+}
+
+.text-featured {}

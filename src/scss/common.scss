@@ -1,0 +1,105 @@
+$primary-color: #DE8667;
+$alt-color: #EFB467;
+$dark-color: #332D38;
+
+/* -------------------------------------------------------------------------- */
+/*                                   buttons                                  */
+/* -------------------------------------------------------------------------- */
+.btn {
+  font-family: 'Raleway';
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 32px;
+  padding: 10px 16px;
+}
+
+.btn-positive {
+  color: white;
+  background-color: $primary-color;
+}
+
+.btn-alt {
+  color: $primary-color;
+  background-color: rgb(255, 255, 255);
+  border: 2px solid #EFB467;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                 text styles                                */
+/* -------------------------------------------------------------------------- */
+@font-face {
+  font-family: 'Raleway';
+  src: url('../assets/fonts/raleway/Raleway-VariableFont_wght.ttf') format('ttf') tech('variations'),
+    url('../assets/fonts/raleway/Raleway-VariableFont_wght.ttf') format('ttf-variations');
+  font-weight: 100 900;
+  font-stretch: 25% 151%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Raleway', sans-serif;
+}
+
+h1 {
+  font-weight: 300;
+  font-size: 98px;
+}
+
+h2 {
+  font-weight: 300;
+  font-size: 61px;
+}
+
+h4 {
+  font-family: 'Raleway', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 41px;
+  text-align: center;
+  letter-spacing: 0.25px;
+}
+
+h5 {
+  font-weight: 400;
+  font-size: 24px;
+}
+
+.text-body {
+  font-family: 'Raleway';
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+}
+
+strong {
+  font-weight: 700;
+}
+
+.text-caption {
+  font-family: 'Raleway';
+  font-weight: 400;
+  font-size: 12px;
+}
+
+/* --------------------------------- utility -------------------------------- */
+.container{
+  padding: 0px 35px;
+}
+
+.text-color-primary{
+    color: $primary-color;
+}
+
+.centered{
+    margin: 0 auto;
+    display: block;
+}
+
+.white-space{
+    height: 180px;
+    width: 100%;
+}
