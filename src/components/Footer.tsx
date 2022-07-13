@@ -4,9 +4,12 @@ type FooterProps = {}
 
 const Footer = (props: FooterProps) => {
     return (
-        <footer className="bg-primary">
+        <footer>
             <div>
-                <i className="bi bi-quote"></i><small>All Rights Reserved | skillupmentorcom</small>
+                <p>
+                    <i className="bi bi-quote"></i>
+                    <small>All Rights Reserved | skillupmentorcom</small>
+                </p>
             </div>
         </footer>
     )
