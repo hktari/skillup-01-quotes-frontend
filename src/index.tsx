@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import './custom.scss';
+import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+
 // import '~bootstrap/dist/js/bootstrap.bundle.js'
 import '../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'
 
