@@ -1,6 +1,16 @@
 
 // Override default variables before the import
-$body-bg: azure;
+
+// @import '~bootstrap/scss/variables.scss';
+
+
+@import './common.scss';
+
+$primary: $primary-color;
+
+$input-btn-font-family:       'Raleway', sans-serif;
 
 // Import Bootstrap and its default variables
 @import '~bootstrap/scss/bootstrap.scss';
+
+

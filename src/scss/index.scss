@@ -383,3 +383,56 @@ em {
     margin-top: 32px;
   }
 }
+
+
+/* -------------------------------------------------------------------------- */
+/*                                sign up page                                */
+/* -------------------------------------------------------------------------- */
+
+#signup-title {
+  margin-top: 65px;
+
+  .text-body {
+    margin-top: 8px;
+  }
+
+  .btn-circle {
+    margin-top: 16px;
+    width: 64px;
+    height: 64px;
+  }
+}
+
+#signup-form {
+  margin-top: 16px;
+
+  label {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  input {
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 30px 8px 24px;
+
+    height: 40px;
+
+    font-family: 'Raleway', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+
+    background: #FFFFFF;
+
+    /* Orange */
+    border: 2px solid #DE8667;
+    border-radius: 32px;
+  }
+}
