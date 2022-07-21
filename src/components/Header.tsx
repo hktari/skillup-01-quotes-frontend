@@ -1,5 +1,5 @@
 import { userInfo } from 'os'
-import React from 'react'
+import React, { useState } from 'react'
 import { User } from '../services/interface'
 
 type HeaderProps = {
@@ -7,6 +7,13 @@ type HeaderProps = {
 }
 
 const Header = (props: HeaderProps) => {
+    const [sideMenuOpen, setSideMenuOpen] = useState(false)
+
+    function toggleSideMenu() {
+        setSideMenuOpen(!sideMenuOpen);
+        console.log('toggling menu');
+    }
+
     return (
         <>
             <header>
@@ -15,6 +22,7 @@ const Header = (props: HeaderProps) => {
                         <a href="#" className='title-brand' ><h3>Quotastic<i className="bi bi-quote"></i></h3>
                         </a>
                         <button type="button"
+                            onClick={() => toggleSideMenu()}
                             data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <i>OPEN/CLOSE</i>
@@ -22,9 +30,10 @@ const Header = (props: HeaderProps) => {
                     </div>
                 </nav>
             </header>
-            <div className="side-menu">
+            <nav id='side-menu' className={sideMenuOpen ? 'open' : ''}>
                 <div className="header">
                     <button type="button"
+                        onClick={() => toggleSideMenu()}
                         className='btn-toggle'
                         data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,7 +68,7 @@ const Header = (props: HeaderProps) => {
                             <button className="btn btn-outlined">Login</button>
                         </>)}
                 </ul>
-            </div>
+            </nav>
         </>
     )
 }

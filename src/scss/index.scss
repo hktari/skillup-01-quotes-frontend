@@ -63,10 +63,18 @@ header {
   }
 }
 
-.side-menu {
+/* ------------------------------- mobile menu ------------------------------ */
+
+.open {
+  left: 0 !important;
+}
+
+#side-menu {
+  transition: left 0.25s ease-in-out 0s;
+
   position: fixed;
   top: 0;
-  left: 0;
+  left: -100vw;
   width: 100vw;
   height: 100vh;
   background-color: white;
@@ -110,17 +118,18 @@ header {
     margin-top: 18px;
     padding: 0;
 
-    .nav-item{
+    .nav-item {
       list-style: none;
 
       padding: 24px 0px;
-      a{
+
+      a {
         @extend h5;
         text-decoration: none;
         color: black;
       }
 
-      i{
+      i {
         float: right;
         font-size: 20px;
       }
