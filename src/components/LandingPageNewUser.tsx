@@ -2,24 +2,31 @@ import React, { useState, useEffect } from 'react'
 import quotesApi from '../services/quotesApi'
 import QuoteComponent from './QuoteComponent'
 import { Quote, User } from '../services/interface'
+import FeaturedQuoteComponent, { FeaturedQuoteProps } from './FeaturedQuoteComponent'
 
 
 const LandingPage = () => {
     const [quotes, setQuotes] = useState<Quote[]>([])
+    const [featuredQuoteParams, setFeaturedQuoteParams] = useState<FeaturedQuoteProps>({ top: null, bottom: null, featured: null })
 
     useEffect(() => {
         async function fetchQuotes() {
             const quotes = await quotesApi.all()
             setQuotes(quotes);
+
+            // todo: get featured quote
+            setFeaturedQuoteParams({ top: quotes[0], bottom: quotes[0], featured: quotes[0] })
         }
         fetchQuotes();
     }, [true])
 
-    const RenderedQuotes = () => {
-        return quotes.map(q => (
-            <QuoteComponent id={q.id} voteCount={q.voteCount} voteState={q.voteState} text={q.text} user={q.user} />
-        ))
+    function RenderFeaturedQuote() {
+        return (
+            // todo: why is cast necessary ?
+            <FeaturedQuoteComponent featured={featuredQuoteParams.featured} top={featuredQuoteParams.top} bottom={featuredQuoteParams.bottom} />
+        )
     }
+
     return (
         <div className='container'>
             <section id="welcome">
@@ -33,7 +40,7 @@ const LandingPage = () => {
             </section>
 
             <section id="featured-quote">
-                hi
+                <RenderFeaturedQuote />
             </section>
 
             <section id="explore-quotes">
@@ -48,13 +55,13 @@ const LandingPage = () => {
                 </p>
                 {
                     quotes.map(q => (
-                        <QuoteComponent id={q.id} voteCount={q.voteCount} voteState={q.voteState} text={q.text} user={q.user} />
+                        <QuoteComponent quote={q} />
                     ))
                 }
 
                 <button className="btn btn-alt centered">Sign up to see more</button>
                 <div className="white-space">
-                    
+
                 </div>
             </section >
         </div>
