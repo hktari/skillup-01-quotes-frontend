@@ -15,7 +15,8 @@ export interface User {
     username: string,
     profileImg: {
         thumbnailUrl: string
-    }
+    },
+    karmaPoints: number
 }
 
 export interface Quote {
