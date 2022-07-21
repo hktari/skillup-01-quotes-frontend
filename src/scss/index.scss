@@ -42,7 +42,6 @@ footer {
 
   div {
     height: 100%;
-    position: relative;
 
     i {
       line-height: var(--footer-height);
@@ -52,9 +51,8 @@ footer {
 
     small {
       float: right;
-
-      padding-bottom: 21px;
-      padding-top: 29px;
+      position: relative;
+      top: 28px;
       font-size: 12px;
     }
   }
@@ -63,7 +61,22 @@ footer {
 /* -------------------------- landing page new user ------------------------- */
 
 #welcome {
+
+  h4,
+  h5 {
+    text-align: start;
+  }
+
+  h4 {
+    margin-top: 55px;
+  }
+
+  h5 {
+    margin-top: 18px;
+  }
+
   button {
+    margin-top: 32px;
     width: 137px;
   }
 }
@@ -77,6 +90,18 @@ footer {
 
   h5 {
     margin-top: 56px;
+  }
+
+  .text-body {
+    margin-top: 18px;
+  }
+
+  .quotes-list {
+    margin-top: 48px;
+  }
+
+  > button{
+    margin-top: 32px;
   }
 }
 

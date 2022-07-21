@@ -21,7 +21,7 @@ const LandingPage = () => {
         fetchQuotes();
     }, [true])
 
-    function RenderFeaturedQuote({featured, top, bottom}: FeaturedQuoteProps) {
+    function RenderFeaturedQuote({ featured, top, bottom }: FeaturedQuoteProps) {
         return (
             // todo: why is cast necessary ?
             <FeaturedQuoteComponent featured={featuredQuoteProps.featured} top={featuredQuoteProps.top} bottom={featuredQuoteProps.bottom} />
@@ -41,7 +41,7 @@ const LandingPage = () => {
             </section>
 
             <section id="featured-quote">
-                <RenderFeaturedQuote featured={featuredQuoteProps.featured} top={featuredQuoteProps.top} bottom={featuredQuoteProps.bottom}/>
+                <RenderFeaturedQuote featured={featuredQuoteProps.featured} top={featuredQuoteProps.top} bottom={featuredQuoteProps.bottom} />
             </section>
 
             <section id="explore-quotes">
@@ -54,11 +54,13 @@ const LandingPage = () => {
                     and keep them saved in your profile
 
                 </p>
-                {
-                    quotes.map(q => (
-                        <QuoteComponent quote={q} />
-                    ))
-                }
+                <div className="quotes-list">
+                    {
+                        quotes.map(q => (
+                            <QuoteComponent quote={q} />
+                        ))
+                    }
+                </div>
 
                 <button className="btn btn-alt centered">Sign up to see more</button>
                 <div className="white-space">
