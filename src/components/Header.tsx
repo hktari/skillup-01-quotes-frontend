@@ -29,6 +29,12 @@ const Header = (props: HeaderProps) => {
                 <a href="/#" className='title-brand' >
                     <h3>Quotastic<i className="bi bi-quote"></i></h3>
                 </a>
+                <div className={isLoggedIn() ? 'btn-wrapper' : 'd-none'}>
+                    <button type="button"
+                        className='btn-add'>
+                        <i className="bi bi-plus"></i>
+                    </button>
+                </div>
             </header>
 
             <nav id='side-menu' className={sideMenuOpen ? 'open' : ''}>
@@ -47,7 +53,7 @@ const Header = (props: HeaderProps) => {
                 </div>
                 <ul className='nav-list'>
                     <li className='nav-item'>
-                        <a aria-current="page" href="#">Home</a> 
+                        <a aria-current="page" href="#">Home</a>
                         <i className="bi bi-chevron-right"></i>
                     </li>
                     {isLoggedIn() ? (

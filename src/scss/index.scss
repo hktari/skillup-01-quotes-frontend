@@ -52,6 +52,11 @@ header {
     flex-grow: 1;
   }
 
+  .btn-add {
+    @extend .btn-toggle;
+    float: right;
+  }
+
   .title-brand {
     float: right;
     color: black;
@@ -124,7 +129,7 @@ header {
 
     .nav-item {
       list-style: none;
-
+      cursor: pointer;
       padding: 24px 0px;
 
       a {
@@ -149,7 +154,7 @@ header {
     }
   }
 
-  .btn-block{
+  .btn-block {
     margin: 8px 0;
   }
 }
