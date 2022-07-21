@@ -11,6 +11,9 @@ type LandingPageProps = {
 const LandingPage = ({ user }: LandingPageProps) => {
 
     const [quoteOfTheDay, setQuoteOfTheDay] = useState<Quote | null>(null)
+    
+    const [mostLikedQuotes, setMostLikedQuotes] = useState<Quote[]>([])
+    const [mostLikedQuotesCurPage, setMostLikedQuotesCurPage] = useState(0)
 
     useEffect(() => {
         async function fetchRandomQuote() {
@@ -19,11 +22,35 @@ const LandingPage = ({ user }: LandingPageProps) => {
         fetchRandomQuote();
     }, [true])
 
+    useEffect(() => {
+
+        // todo: pagination
+
+        async function fetchMostLikedQuotes() {
+            setMostLikedQuotes(await quotesApi.getMostLikedQuotes())
+            
+        }
+
+        fetchMostLikedQuotes();
+    }, [true])
+
+
     function QuoteOfTheDay() {
         return (
-            <QuoteComponent quote={quoteOfTheDay}/>
+            <QuoteComponent quote={quoteOfTheDay} />
         )
+    }
 
+    function MostLikedQuotes() {
+        return (
+            <div className="quotes-list">
+                {mostLikedQuotes.map(q => <QuoteComponent quote={q} />)}
+
+                <button className="btn btn-alt centered btn-wide">
+                    load more
+                </button>
+            </div>
+        )
     }
 
     return (
@@ -36,7 +63,11 @@ const LandingPage = ({ user }: LandingPageProps) => {
                 <QuoteOfTheDay />
             </section>
             <section id="most-liked-quotes">
-
+                <h3 className='text-center'>Most liked quotes</h3>
+                <p className="text-body text-center">
+                    Most liked quotes on the platform.  Sign up or login to like the quotes  and keep them saved in your profile
+                </p>
+                <MostLikedQuotes />
             </section>
             <section id="most-recent-quotes">
 

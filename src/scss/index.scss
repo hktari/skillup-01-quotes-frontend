@@ -58,9 +58,9 @@ footer {
   }
 }
 
- /* -------------------------------------------------------------------------- */
- /*                            landing page new user                           */
- /* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                            landing page new user                           */
+/* -------------------------------------------------------------------------- */
 
 #welcome {
 
@@ -78,8 +78,10 @@ footer {
   }
 
   button {
+    @extend .btn-wide;
+
     margin-top: 32px;
-    width: 137px;
+
   }
 }
 
@@ -102,7 +104,7 @@ footer {
     margin-top: 48px;
   }
 
-  > button{
+  >button {
     margin-top: 32px;
   }
 }
@@ -214,12 +216,28 @@ em {
 /*                                landing page                                */
 /* -------------------------------------------------------------------------- */
 
-#quote-of-the-day{
-  h4{
+#quote-of-the-day {
+  h4 {
     color: $primary-color;
     margin-top: 56px;
   }
-  .quote-card{
+
+  .quote-card {
+    margin-top: 32px;
+  }
+}
+
+#most-liked-quotes {
+  h3 {
+    color: $primary-color;
+    margin-top: 64px;
+  }
+
+  .text-body {
+    margin-top: 16px;
+  }
+
+  .btn-wide{
     margin-top: 32px;
   }
 }
