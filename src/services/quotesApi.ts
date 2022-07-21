@@ -12,8 +12,15 @@ async function all(startIdx : number = 0, pageSize : number = 10) : Promise<Quot
     return quotes as Quote[];    
 }
 
+async function getRandomQuote() : Promise<Quote> {
+    const quotes = await all();
+    let randIdx = Math.round(Math.random() * quotes.length)
+    return quotes[randIdx];
+}
+
 const quotesApi = {
-    all
+    all,
+    getRandomQuote
 }
 
 export default quotesApi;

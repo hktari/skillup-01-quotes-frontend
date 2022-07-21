@@ -121,7 +121,7 @@ em {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 16px 32px 16px 16px;
+  padding: 16px 48px 16px 16px;
   gap: 21px;
 
   /* White */
@@ -213,3 +213,13 @@ em {
 /* -------------------------------------------------------------------------- */
 /*                                landing page                                */
 /* -------------------------------------------------------------------------- */
+
+#quote-of-the-day{
+  h4{
+    color: $primary-color;
+    margin-top: 56px;
+  }
+  .quote-card{
+    margin-top: 32px;
+  }
+}
