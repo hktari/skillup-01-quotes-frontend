@@ -14,6 +14,8 @@ const Header = (props: HeaderProps) => {
         console.log('toggling menu');
     }
 
+    const isLoggedIn = () => props.user !== null;
+
     return (
         <>
             <header>
@@ -28,6 +30,7 @@ const Header = (props: HeaderProps) => {
                     <h3>Quotastic<i className="bi bi-quote"></i></h3>
                 </a>
             </header>
+
             <nav id='side-menu' className={sideMenuOpen ? 'open' : ''}>
                 <div className="header">
                     <button type="button"
@@ -37,33 +40,33 @@ const Header = (props: HeaderProps) => {
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <i className='bi bi-x'></i>
                     </button>
-                    <div className="user-profile">
+                    <div className={isLoggedIn() ? "user-profile" : 'user-profile d-none'} >
                         <img src={props.user?.profileImg.thumbnailUrl} alt="" />
                         <h5>{props.user?.username}</h5>
                     </div>
                 </div>
                 <ul className='nav-list'>
                     <li className='nav-item'>
-                        <a aria-current="page" href="#">Home</a>
+                        <a aria-current="page" href="#">Home</a> 
                         <i className="bi bi-chevron-right"></i>
                     </li>
-                    {props.user ? (
+                    {isLoggedIn() ? (
                         <>
                             <li className='nav-item'>
                                 <a href="#">Settings</a>
                                 <i className="bi bi-chevron-right"></i>
                             </li>
-                            <li className='nav-item'>
+                            <li className='nav-item nav-item-alt'>
                                 <a href="#">Logout</a>
                                 <i className="bi bi-chevron-right"></i>
                             </li>
                         </>
                     ) : (
                         <>
-                            <button className="btn btn-positive">
+                            <button className="btn btn-positive btn-block">
                                 Sign up
                             </button>
-                            <button className="btn btn-outlined">Login</button>
+                            <button className="btn btn-alt btn-block">Login</button>
                         </>)}
                 </ul>
             </nav>

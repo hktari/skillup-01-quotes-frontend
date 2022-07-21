@@ -48,7 +48,7 @@ header {
   /* Shadow Primary */
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
 
-  .btn-wrapper{
+  .btn-wrapper {
     flex-grow: 1;
   }
 
@@ -139,6 +139,18 @@ header {
       }
 
     }
+
+    .nav-item-alt {
+      color: $primary-color;
+
+      a {
+        color: $primary-color ;
+      }
+    }
+  }
+
+  .btn-block{
+    margin: 8px 0;
   }
 }
 

@@ -29,7 +29,10 @@ $btn-padding-horizontal: 16px;
   height: 40px;
   padding: 0px;
 }
+.btn-block{
+  width: 100%;
 
+}
 .btn-toggle {
   background-color: white;
   color: $primary-color;
@@ -51,7 +54,7 @@ $btn-padding-horizontal: 16px;
 h1,
 h2,
 h3,
-h4,
+h4, 
 h5,
 h6 {
   font-family: 'Raleway', sans-serif;
