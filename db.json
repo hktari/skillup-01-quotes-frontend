@@ -37,7 +37,7 @@
         {
             "id": 1,
             "voteCount": 275,
-            "text": "The future cannot be predicted, but futures can be invented",
+            "text": "The future cannot be predicted, but futures can be invented.",
             "voteState": "upvoted",
             "user": {
                 "id": 1,

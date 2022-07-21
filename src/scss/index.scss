@@ -149,32 +149,33 @@ em {
 }
 
 .featured-quote {
-  // padding: 60px 0px;
-  position: absolute;
-  top: 60;
-  left: 0;
-  right: 0;
-  bottom: 60;
+  position: relative;
+  z-index: 1;
+  padding: 60px 0px;
 
   .quote-card {
-    z-index: 1;
+    margin: 0;
   }
 }
 
 .bottom-quote {
+  .quote-card {
+    margin: 0;
+  }
+
+  filter: blur(2px);
   position: absolute;
   bottom: 0;
   left: 20px;
   right: 20px;
-
-  .quote-card {
-    z-index: -1;
-
-  }
 }
 
-.top-quote .quote-card {
-  z-index: 0;
+.top-quote {
+  .quote-card {
+    margin: 0;
+  }
+
+  filter: blur(2px);
   position: absolute;
   top: 0;
   left: 20px;

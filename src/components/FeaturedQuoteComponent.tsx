@@ -14,12 +14,11 @@ const FeaturedQuoteComponent = ({ top, featured, bottom }: FeaturedQuoteProps) =
             <div className="top-quote">
                 <QuoteComponent quote={top} />
             </div>
-            <div className="featured-quote">
-                <QuoteComponent quote={featured} />
-            </div>
             <div className="bottom-quote">
                 <QuoteComponent quote={bottom} />
-
+            </div>
+            <div className="featured-quote">
+                <QuoteComponent quote={featured} />
             </div>
         </div>
     )

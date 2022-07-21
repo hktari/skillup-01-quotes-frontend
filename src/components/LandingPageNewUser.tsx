@@ -7,7 +7,7 @@ import FeaturedQuoteComponent, { FeaturedQuoteProps } from './FeaturedQuoteCompo
 
 const LandingPage = () => {
     const [quotes, setQuotes] = useState<Quote[]>([])
-    const [featuredQuoteParams, setFeaturedQuoteParams] = useState<FeaturedQuoteProps>({ top: null, bottom: null, featured: null })
+    const [featuredQuoteProps, setFeaturedQuoteParams] = useState<FeaturedQuoteProps>({ top: null, bottom: null, featured: null })
 
     useEffect(() => {
         async function fetchQuotes() {
@@ -15,15 +15,16 @@ const LandingPage = () => {
             setQuotes(quotes);
 
             // todo: get featured quote
+            console.log(quotes[0])
             setFeaturedQuoteParams({ top: quotes[0], bottom: quotes[0], featured: quotes[0] })
         }
         fetchQuotes();
     }, [true])
 
-    function RenderFeaturedQuote() {
+    function RenderFeaturedQuote({featured, top, bottom}: FeaturedQuoteProps) {
         return (
             // todo: why is cast necessary ?
-            <FeaturedQuoteComponent featured={featuredQuoteParams.featured} top={featuredQuoteParams.top} bottom={featuredQuoteParams.bottom} />
+            <FeaturedQuoteComponent featured={featuredQuoteProps.featured} top={featuredQuoteProps.top} bottom={featuredQuoteProps.bottom} />
         )
     }
 
@@ -40,7 +41,7 @@ const LandingPage = () => {
             </section>
 
             <section id="featured-quote">
-                <RenderFeaturedQuote />
+                <RenderFeaturedQuote featured={featuredQuoteProps.featured} top={featuredQuoteProps.top} bottom={featuredQuoteProps.bottom}/>
             </section>
 
             <section id="explore-quotes">
