@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './App.css';
 import LandingPageNewUser from './components/LandingPageNewUser';
 import Header from './components/Header';
 import { User } from './services/interface';
