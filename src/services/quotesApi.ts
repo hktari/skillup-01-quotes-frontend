@@ -1,5 +1,6 @@
 import { Quote } from "./interface";
 
+// todo: move to config
 const api_endpoint: string = "http://localhost:3004/quotes"
 
 
