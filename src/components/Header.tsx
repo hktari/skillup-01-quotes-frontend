@@ -17,18 +17,16 @@ const Header = (props: HeaderProps) => {
     return (
         <>
             <header>
-                <nav>
-                    <div>
-                        <a href="#" className='title-brand' ><h3>Quotastic<i className="bi bi-quote"></i></h3>
-                        </a>
-                        <button type="button"
-                            onClick={() => toggleSideMenu()}
-                            data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <i>OPEN/CLOSE</i>
-                        </button>
-                    </div>
-                </nav>
+                <div className="btn-wrapper">
+                    <button type="button"
+                        className='btn-toggle'
+                        onClick={() => toggleSideMenu()}>
+                        <i className="bi bi-list"></i>
+                    </button>
+                </div>
+                <a href="/#" className='title-brand' >
+                    <h3>Quotastic<i className="bi bi-quote"></i></h3>
+                </a>
             </header>
             <nav id='side-menu' className={sideMenuOpen ? 'open' : ''}>
                 <div className="header">
