@@ -11,9 +11,11 @@ type LandingPageProps = {
 const LandingPage = ({ user }: LandingPageProps) => {
 
     const [quoteOfTheDay, setQuoteOfTheDay] = useState<Quote | null>(null)
-    
+
     const [mostLikedQuotes, setMostLikedQuotes] = useState<Quote[]>([])
     const [mostLikedQuotesCurPage, setMostLikedQuotesCurPage] = useState(0)
+    const [mostRecentQuotes, setMostRecentQuotes] = useState<Quote[]>([])
+
 
     useEffect(() => {
         async function fetchRandomQuote() {
@@ -23,15 +25,25 @@ const LandingPage = ({ user }: LandingPageProps) => {
     }, [true])
 
     useEffect(() => {
-
         // todo: pagination
 
         async function fetchMostLikedQuotes() {
             setMostLikedQuotes(await quotesApi.getMostLikedQuotes())
-            
+
         }
 
         fetchMostLikedQuotes();
+    }, [true])
+
+    useEffect(() => {
+        // todo: pagination
+
+        async function fetchMostRecentQuotes() {
+            setMostRecentQuotes(await quotesApi.getMostRecentQuotes())
+
+        }
+
+        fetchMostRecentQuotes();
     }, [true])
 
 
@@ -45,6 +57,18 @@ const LandingPage = ({ user }: LandingPageProps) => {
         return (
             <div className="quotes-list">
                 {mostLikedQuotes.map(q => <QuoteComponent quote={q} />)}
+
+                <button className="btn btn-alt centered btn-wide">
+                    load more
+                </button>
+            </div>
+        )
+    }
+
+    function MostRecentQuotes() {
+        return (
+            <div className="quotes-list">
+                {mostRecentQuotes.map(q => <QuoteComponent quote={q} />)}
 
                 <button className="btn btn-alt centered btn-wide">
                     load more
@@ -70,8 +94,13 @@ const LandingPage = ({ user }: LandingPageProps) => {
                 <MostLikedQuotes />
             </section>
             <section id="most-recent-quotes">
-
+                <h5>Most recent quotes</h5>
+                <p className="text-body">
+                    Recent quotes updates as soon user adds new quote. Go ahed show them that you seen the new quote and like the ones you like.
+                </p>
+                <MostRecentQuotes />
             </section>
+            <div className="white-space"></div>
         </div>
     )
 }

@@ -25,7 +25,9 @@ $btn-padding-horizontal: 16px;
   border: 2px solid #EFB467;
 }
 .btn-wide {
-  width: calc(137px + 2* $btn-padding-horizontal);
+  width: calc(148px);
+  height: 40px;
+  padding: 0px;
 }
 
 /* -------------------------------------------------------------------------- */

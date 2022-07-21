@@ -19,13 +19,21 @@ async function getRandomQuote(): Promise<Quote> {
 }
 
 async function getMostLikedQuotes(startIdx: number = 0, pageSize: number = 10): Promise<Quote[]> {
-    return await all(startIdx, pageSize);
+    const quotes = await all(startIdx, pageSize);
+    quotes.sort((a, b) => a.voteCount - b.voteCount);
+
+    return quotes
+}
+
+async function getMostRecentQuotes(startIdx: number = 0, pageSize: number = 10): Promise<Quote[]> {
+    return await all(startIdx, pageSize);    
 }
 
 const quotesApi = {
     all,
     getRandomQuote,
     getMostLikedQuotes,
+    getMostRecentQuotes
 }
 
 export default quotesApi;
