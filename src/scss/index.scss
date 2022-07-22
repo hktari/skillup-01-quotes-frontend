@@ -398,8 +398,10 @@ em {
 
   .btn-circle {
     margin-top: 16px;
-    width: 64px;
-    height: 64px;
+    img{
+      width: 64px;
+      object-fit: cover;        
+    }
   }
 }
 

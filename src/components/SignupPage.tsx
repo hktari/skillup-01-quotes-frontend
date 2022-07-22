@@ -1,8 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
+import profilePlaceholder from '../assets/images/profilePlaceholder.webp'
 
 type Props = {}
 
 const SignupPage = (props: Props) => {
+    const [email, setEmail] = useState('')
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
+
     return (
         <div className="container">
             <section id="signup-title">
@@ -10,8 +17,9 @@ const SignupPage = (props: Props) => {
                 <p className="text-body text-center">
                     Your name will appear on quotes and your public profile.
                 </p>
-                <button className='btn-circle centered'>
-                    <img src="" alt="" />
+                <button className='btn-circle centered btn-img'>
+                    <a hidden href="https://www.vectorstock.com/royalty-free-vector/female-user-account-profile-circle-flat-icon-vector-33677758">Vector image by VectorStock / vectorstock</a>
+                    <img src={profilePlaceholder} alt="profile placeholder" />
                 </button>
             </section>
 
