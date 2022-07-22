@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import LoadingIndicator from './LoadingIndicator'
 
 type Props = {}
 
@@ -50,9 +51,7 @@ const LoginPage = (props: Props) => {
                     </div>
                 </form>
             </div>
-            <div className={loading ? 'loading-indicator' : 'd-none'}>
-                <div className="spinner"></div>
-            </div>
+            <LoadingIndicator loading={loading}/>
         </>
     )
 }
