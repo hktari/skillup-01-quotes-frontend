@@ -146,6 +146,42 @@ a:hover {
   width: 100%;
 }
 
+.loading-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba($dark, $alpha: 0.4);
+}
+
+.spinner {
+  position: relative;
+  left: calc(50% - var(--size) / 2);
+  top: calc(50% - var(--size) / 2);
+
+
+  --stroke-width: 6px;
+  --size: 64px;
+  --duration: 1s;
+  border: var(--stroke-width) solid rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+  width: var(--size);
+  height: var(--size);
+  border-top-color: rgba(0, 0, 0, 0.5);
+  animation: rotate calc(var(--duration)) linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 
 /* ---------------------------------- forms --------------------------------- */
 
