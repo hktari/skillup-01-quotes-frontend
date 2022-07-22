@@ -435,4 +435,13 @@ em {
     border: 2px solid #DE8667;
     border-radius: 32px;
   }
+
+  .sign-in-container {
+    margin-top: 16px;
+
+    a {
+      float: right;
+      z-index: 2;
+    }
+  }
 }

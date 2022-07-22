@@ -8,7 +8,7 @@ $dark-color: #332D38;
 $btn-padding-horizontal: 16px;
 
 .btn {
-  font-family: 'Raleway';
+  font-family: 'Raleway', sans-serif;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border-radius: 32px;
   padding: 10px $btn-padding-horizontal;
@@ -24,22 +24,26 @@ $btn-padding-horizontal: 16px;
   background-color: rgb(255, 255, 255);
   border: 2px solid #EFB467;
 }
+
 .btn-wide {
   width: calc(148px);
   height: 40px;
   padding: 0px;
 }
-.btn-block{
+
+.btn-block {
   width: 100%;
 
 }
+
 .btn-toggle {
   background-color: white;
   color: $primary-color;
   border: 0;
   font-size: 35px;
 }
-.btn-circle{
+
+.btn-circle {
   border-radius: 50%;
   overflow: hidden;
   border: none;
@@ -59,7 +63,7 @@ $btn-padding-horizontal: 16px;
 h1,
 h2,
 h3,
-h4, 
+h4,
 h5,
 h6 {
   font-family: 'Raleway', sans-serif;
@@ -97,10 +101,11 @@ p {
 }
 
 .text-body {
-  font-family: 'Raleway';
+  font-family: 'Raleway', sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 16px;
+  line-height: 19px;
 }
 
 strong {
@@ -111,6 +116,15 @@ strong {
   font-family: 'Raleway';
   font-weight: 400;
   font-size: 12px;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover{
+  color: $primary-color;
 }
 
 /* --------------------------------- utility -------------------------------- */

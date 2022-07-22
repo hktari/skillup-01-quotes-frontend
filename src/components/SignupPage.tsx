@@ -40,10 +40,11 @@ const SignupPage = (props: Props) => {
                         <input type="password" className="form-control" id="confirmPassword" />
                     </div>
                     <button type="submit" className="btn btn-positive btn-block">Sign up</button>
-                    
 
-                    <div className="form-text ">Already have an account ? </div>
-                    <button>Sign in</button>
+                    <div className="sign-in-container">
+                        <span className='text-body'>Already have an account ?</span>
+                        <a className='link-positive'>Sign in</a>
+                    </div>
                 </form>
             </section>
 
