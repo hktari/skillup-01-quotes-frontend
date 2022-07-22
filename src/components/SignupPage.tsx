@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
+import internal from 'stream'
 import profilePlaceholder from '../assets/images/profilePlaceholder.webp'
+
 
 type Props = {}
 
@@ -9,6 +11,22 @@ const SignupPage = (props: Props) => {
     const [lastName, setLastName] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
+
+    function onSignup(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        console.log({ email, firstName, lastName, password, confirmPassword })
+
+        if (password !== confirmPassword) {
+            let inputEl = document.querySelector('input#password') as HTMLInputElement;
+            inputEl.setCustomValidity("Passwords don't match")
+            inputEl.reportValidity();
+            console.log('passwords don\'t match');
+            // event.stopPropagation();
+            return;
+        }
+
+        console.log('success');
+    }
 
     return (
         <div className="container">
@@ -24,28 +42,52 @@ const SignupPage = (props: Props) => {
             </section>
 
             <section id="signup-form">
-                <form>
+                <form onSubmit={onSignup}>
                     <div className="mb-3">
                         <label htmlFor="email" className="form-label">Email</label>
-                        <input placeholder='example@net.com' type="email" className="form-control" id="email" aria-describedby="emailHelp" />
+                        <input placeholder='example@net.com' type="email" className="form-control"
+                            id="email" aria-describedby="emailHelp"
+                            required
+                            onChange={e => setEmail(e.currentTarget.value)}
+                            value={email} />
                     </div>
                     <div className="mb-3 row">
                         <div className="col-6">
                             <label htmlFor="firstName" className="form-label">First Name</label>
-                            <input placeholder='John' type="text" className="form-control" id="firstName" aria-describedby="firstName" />
+                            <input placeholder='John' type="text" className="form-control"
+                                id="firstName" aria-describedby="firstName"
+                                required
+                                onChange={e => setFirstName(e.currentTarget.value)}
+                                value={firstName} />
                         </div>
                         <div className="col-6">
                             <label htmlFor="lastName" className="form-label">Last Name</label>
-                            <input placeholder='Scott' type="text" className="form-control" id="lastName" aria-describedby="lastName" />
+                            <input placeholder='Scott' type="text" className="form-control"
+                                id="lastName" aria-describedby="lastName"
+                                required
+                                onChange={e => setLastName(e.currentTarget.value)}
+                                value={lastName} />
                         </div>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="password" className="form-label">Password</label>
-                        <input type="password" className="form-control" id="password" />
+                        <input type="password" className="form-control" id="password"
+                            required
+                            onChange={e => {
+                                setPassword(e.currentTarget.value);
+                                (e.currentTarget as HTMLInputElement).setCustomValidity('') // clear password invalidity
+                            }}
+                            value={password} />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
-                        <input type="password" className="form-control" id="confirmPassword" />
+                        <input type="password" className="form-control" id="confirmPassword"
+                            required
+                            onChange={e => {
+                                setConfirmPassword(e.currentTarget.value);
+                                (e.currentTarget as HTMLInputElement).setCustomValidity('') // clear password invalidity
+                            }}
+                            value={confirmPassword} />
                     </div>
                     <button type="submit" className="btn btn-positive btn-block">Sign up</button>
 
