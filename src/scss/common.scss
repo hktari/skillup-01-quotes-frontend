@@ -1,6 +1,6 @@
-$primary-color: #DE8667;
-$alt-color: #EFB467;
-$dark-color: #332D38;
+$primary: #DE8667;
+$secondary: #EFB467;
+$dark: #332D38;
 
 /* -------------------------------------------------------------------------- */
 /*                                   buttons                                  */
@@ -16,11 +16,11 @@ $btn-padding-horizontal: 16px;
 
 .btn-positive {
   color: white;
-  background-color: $primary-color;
+  background-color: $primary;
 }
 
 .btn-alt {
-  color: $primary-color;
+  color: $primary;
   background-color: rgb(255, 255, 255);
   border: 2px solid #EFB467;
 }
@@ -38,7 +38,7 @@ $btn-padding-horizontal: 16px;
 
 .btn-toggle {
   background-color: white;
-  color: $primary-color;
+  color: $primary;
   border: 0;
   font-size: 35px;
 }
@@ -123,8 +123,8 @@ a {
   cursor: pointer;
 }
 
-a:hover{
-  color: $primary-color;
+a:hover {
+  color: $primary;
 }
 
 /* --------------------------------- utility -------------------------------- */
@@ -133,7 +133,7 @@ a:hover{
 }
 
 .text-color-primary {
-  color: $primary-color;
+  color: $primary;
 }
 
 .centered {
@@ -144,4 +144,16 @@ a:hover{
 .white-space {
   height: 124px;
   width: 100%;
+}
+
+
+/* ---------------------------------- forms --------------------------------- */
+
+.form-alt-action {
+  margin-top: 16px;
+
+  a {
+    float: right;
+    z-index: 2;
+  }
 }

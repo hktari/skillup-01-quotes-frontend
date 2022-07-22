@@ -69,7 +69,7 @@ header {
 
 
     i {
-      color: $primary-color;
+      color: $primary;
       position: relative;
       top: -6px;
     }
@@ -146,10 +146,10 @@ header {
     }
 
     .nav-item-alt {
-      color: $primary-color;
+      color: $primary;
 
       a {
-        color: $primary-color ;
+        color: $primary ;
       }
     }
   }
@@ -162,7 +162,7 @@ header {
 /* --------------------------------- footer --------------------------------- */
 footer {
   padding: 0px 35px;
-  background-color: $primary-color;
+  background-color: $primary;
   color: white;
 
   div {
@@ -235,7 +235,7 @@ footer {
 }
 
 em {
-  color: $primary-color;
+  color: $primary;
   font-style: normal;
 }
 
@@ -343,7 +343,7 @@ em {
 
 #quote-of-the-day {
   h4 {
-    color: $primary-color;
+    color: $primary;
     margin-top: 56px;
   }
 
@@ -354,7 +354,7 @@ em {
 
 #most-liked-quotes {
   h3 {
-    color: $primary-color;
+    color: $primary;
     margin-top: 64px;
   }
 
@@ -370,7 +370,7 @@ em {
 #most-recent-quotes {
   h5 {
     margin-top: 69px;
-    color: $primary-color;
+    color: $primary;
     text-align: center;
   }
 
@@ -407,43 +407,21 @@ em {
 
 #signup-form {
   margin-top: 16px;
+}
 
-  label {
-    font-family: 'Raleway';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-  }
 
-  input {
-    /* Auto layout */
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 8px 30px 8px 24px;
+/* -------------------------------------------------------------------------- */
+/*                                 login page                                 */
+/* -------------------------------------------------------------------------- */
 
-    height: 40px;
+#login-form{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
 
-    font-family: 'Raleway', sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-
-    background: #FFFFFF;
-
-    /* Orange */
-    border: 2px solid #DE8667;
-    border-radius: 32px;
-  }
-
-  .sign-in-container {
-    margin-top: 16px;
-
-    a {
-      float: right;
-      z-index: 2;
-    }
-  }
+  margin: 0 auto;
+  // display: flex;
+  // flex-direction: column;
+  // justify-items: center;
 }

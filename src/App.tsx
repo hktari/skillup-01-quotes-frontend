@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import authApi from './services/authApi';
 import LandingPage from './components/LandingPage';
 import SignupPage from './components/SignupPage';
+import LoginPage from './components/LoginPage';
 
 function App() {
   const tmp_user = {
@@ -20,14 +21,14 @@ function App() {
 
   const [user, setUser] = useState<User | null>(tmp_user)
 
-  return ( 
+  return (
     <>
       <div className="page-wrapper">
         <Header user={user} />
         <main>
           {/* {authApi.isLoggedIn() ? <LandingPage user={user as User} /> : <LandingPageNewUser />} */}
-          <SignupPage/>
-        </main>
+          <LoginPage />
+        </main> 
       </div>
       <Footer />
     </>

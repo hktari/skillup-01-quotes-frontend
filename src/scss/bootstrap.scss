@@ -1,20 +1,47 @@
-
 // Override default variables before the import
 
 // @import '~bootstrap/scss/variables.scss';
 
+$primary: #DE8667;
+$secondary: #EFB467;
+$dark: #332D38;
 
-@import './common.scss';
-
-$primary: $primary-color;
-
-$input-btn-font-family:       'Raleway', sans-serif;
-$font-family-base:        'Raleway', sans-serif;
+$input-btn-font-family: 'Raleway', sans-serif;
+$font-family-base: 'Raleway', sans-serif;
 $font-size-base: 16;
 $line-height-base: 1;
-$link-color: $alt-color;
+$link-color: $secondary;
 
 // Import Bootstrap and its default variables
 @import '~bootstrap/scss/bootstrap.scss';
 
 
+label.form-label {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+}
+
+input.form-control {
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 30px 8px 24px;
+
+    height: 40px;
+
+    font-family: 'Raleway', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+
+    background: #FFFFFF;
+
+    /* Orange */
+    border: 2px solid #DE8667;
+    border-radius: 32px;
+}

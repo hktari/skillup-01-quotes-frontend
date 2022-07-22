@@ -91,7 +91,7 @@ const SignupPage = (props: Props) => {
                     </div>
                     <button type="submit" className="btn btn-positive btn-block">Sign up</button>
 
-                    <div className="sign-in-container">
+                    <div className="form-alt-action">
                         <span className='text-body'>Already have an account ?</span>
                         <a className='link-positive'>Sign in</a>
                     </div>
