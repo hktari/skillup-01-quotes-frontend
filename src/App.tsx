@@ -1,3 +1,7 @@
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
+
 import React, { useEffect, useState } from 'react';
 import LandingPageNewUser from './components/LandingPageNewUser';
 import Header from './components/Header';
@@ -7,6 +11,7 @@ import authApi from './services/authApi';
 import LandingPage from './components/LandingPage';
 import SignupPage from './components/SignupPage';
 import LoginPage from './components/LoginPage';
+import Layout from "./components/Layout";
 
 function App() {
   const tmp_user = {
@@ -22,16 +27,17 @@ function App() {
   const [user, setUser] = useState<User | null>(tmp_user)
 
   return (
-    <>
-      <div className="page-wrapper">
-        <Header user={user} />
-        <main>
-          {/* {authApi.isLoggedIn() ? <LandingPage user={user as User} /> : <LandingPageNewUser />} */}
-          <LoginPage />
-        </main> 
-      </div>
-      <Footer />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout user={user} />}>
+          <Route index element={authApi.isLoggedIn() ? <LandingPage user={user as User} /> : <LandingPageNewUser />} />
+          <Route path="/login" element={<LoginPage />}>
+          </Route>
+          <Route path="/signup" element={<SignupPage />}>
+          </Route>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
