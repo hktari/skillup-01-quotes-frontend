@@ -17,11 +17,13 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
     let login = async (username: string, pwd: string) => {
         const user = await authApi.login(username, pwd)
         setUser(user);
+        localStorage.setItem("user", JSON.stringify(user));
         return user;
     }
     let logout = async () => {
         await authApi.logout()
         setUser(null);
+        localStorage.setItem("user", "");
     };
 
     let value = { user, login, logout };
