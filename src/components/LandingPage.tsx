@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react'
 import authApi from '../services/authApi'
 import { Quote, User } from '../services/interface'
 import quotesApi from '../services/quotesApi'
+import { AuthContextType, useAuth } from './AuthProvider'
 import QuoteComponent from './QuoteComponent'
 
-type LandingPageProps = {
-    user: User
-}
 
-const LandingPage = ({ user }: LandingPageProps) => {
+const LandingPage = () => {
+    const auth = useAuth();
 
     const [quoteOfTheDay, setQuoteOfTheDay] = useState<Quote | null>(null)
 
@@ -79,6 +78,7 @@ const LandingPage = ({ user }: LandingPageProps) => {
 
     return (
         <div className="container">
+            {auth.user.username}
             <section id="quote-of-the-day">
                 <h4>Quote of the day</h4>
                 <p className="text-body text-center">

@@ -12,6 +12,7 @@ import LandingPage from './components/LandingPage';
 import SignupPage from './components/SignupPage';
 import LoginPage from './components/LoginPage';
 import Layout from "./components/Layout";
+import AuthProvider, { useAuth } from "./components/AuthProvider";
 
 function App() {
   const tmp_user = {
@@ -23,21 +24,24 @@ function App() {
     karmaPoints: 154
   };
   // const tmp_user : User | null = null;
-
-  const [user, setUser] = useState<User | null>(tmp_user)
+  
+  const {user} = useAuth()
+  const isLoggedIn = () => user !== null
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout user={user} />}>
-          <Route index element={authApi.isLoggedIn() ? <LandingPage user={user as User} /> : <LandingPageNewUser />} />
-          <Route path="/login" element={<LoginPage />}>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={isLoggedIn() ? <LandingPage /> : <LandingPageNewUser />} />
+            <Route path="/login" element={<LoginPage />}>
+            </Route>
+            <Route path="/signup" element={<SignupPage />}>
+            </Route>
           </Route>
-          <Route path="/signup" element={<SignupPage />}>
-          </Route>
-        </Route>
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 

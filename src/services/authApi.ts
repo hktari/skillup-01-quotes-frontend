@@ -3,15 +3,11 @@ import { User } from "./interface";
 // todo: move to config
 const api_endpoint: string = "http://localhost:3004/users"
 
-function isLoggedIn(){
-    return true;
-}
-
 async function login(username: string, password: string) : Promise<User>{
     const response = await fetch(api_endpoint, { method: "GET" })
     const users = await response.json();
     // todo: mock timeout
-    
+
     return users[0] as User;
 }
 
@@ -21,7 +17,6 @@ async function logout() {
 
 let authApi = {
     login,
-    isLoggedIn,
     logout
 }
 

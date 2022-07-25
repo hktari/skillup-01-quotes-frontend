@@ -4,15 +4,12 @@ import { User } from '../services/interface'
 import Footer from './Footer'
 import Header from './Header'
 
-interface LayoutProps {
-    user: User | null
-}
 
-const Layout = ({user}: LayoutProps) => {
+const Layout = () => {
     return (
         <>
             <div className="page-wrapper">
-                <Header user={user} />
+                <Header />
                 <main>
                     <Outlet />
                 </main>

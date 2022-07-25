@@ -1,20 +1,27 @@
 import { userInfo } from 'os'
 import React, { useState } from 'react'
 import { User } from '../services/interface'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from './AuthProvider'
+import authApi from '../services/authApi'
 
-type HeaderProps = {
-    user: User | null
-}
 
-const Header = (props: HeaderProps) => {
+const Header = () => {
     const [sideMenuOpen, setSideMenuOpen] = useState(false)
 
     function toggleSideMenu() {
         setSideMenuOpen(!sideMenuOpen);
         console.log('toggling menu');
     }
+    async function onLogout() {
+        await logout();
+        setSideMenuOpen(false);
+        navigate('/login')
+    }
 
-    const isLoggedIn = () => props.user !== null;
+    const navigate = useNavigate()
+    const { user, logout } = useAuth()
+    const isLoggedIn = () => user !== null;
 
     return (
         <>
@@ -26,9 +33,9 @@ const Header = (props: HeaderProps) => {
                         <i className="bi bi-list"></i>
                     </button>
                 </div>
-                <a href="/#" className='title-brand' >
+                <Link to="/" className='title-brand' >
                     <h3>Quotastic<i className="bi bi-quote"></i></h3>
-                </a>
+                </Link>
                 <div className={isLoggedIn() ? 'btn-wrapper' : 'd-none'}>
                     <button type="button"
                         className='btn-add'>
@@ -47,32 +54,34 @@ const Header = (props: HeaderProps) => {
                         <i className='bi bi-x'></i>
                     </button>
                     <div className={isLoggedIn() ? "user-profile" : 'user-profile d-none'} >
-                        <img src={props.user?.profileImg.thumbnailUrl} alt="" />
-                        <h5>{props.user?.username}</h5>
+                        <img src={user?.profileImg.thumbnailUrl} alt="" />
+                        <h5>{user?.username}</h5>
                     </div>
                 </div>
                 <ul className='nav-list'>
                     <li className='nav-item'>
-                        <a aria-current="page" href="#">Home</a>
+                        <Link aria-current="page" to="/">Home</Link>
                         <i className="bi bi-chevron-right"></i>
                     </li>
                     {isLoggedIn() ? (
                         <>
                             <li className='nav-item'>
-                                <a href="#">Settings</a>
+                                <Link to="#">Settings</Link>
                                 <i className="bi bi-chevron-right"></i>
                             </li>
                             <li className='nav-item nav-item-alt'>
-                                <a href="#">Logout</a>
+                                <button onClick={() => onLogout()}>Logout</button>
                                 <i className="bi bi-chevron-right"></i>
                             </li>
                         </>
                     ) : (
                         <>
                             <button className="btn btn-positive btn-block">
-                                Sign up
+                                <Link to='/signup'>Sign up</Link>
                             </button>
-                            <button className="btn btn-alt btn-block">Login</button>
+                            <button className="btn btn-alt btn-block">
+                                <Link to='/login'>Login</Link>
+                            </button>
                         </>)}
                 </ul>
             </nav>
