@@ -85,6 +85,7 @@ header {
 #side-menu {
   transition: left 0.25s ease-in-out 0s;
 
+  z-index: 3;
   position: fixed;
   top: 0;
   left: -100vw;
