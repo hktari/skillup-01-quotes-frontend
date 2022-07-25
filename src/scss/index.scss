@@ -132,15 +132,18 @@ header {
       list-style: none;
       cursor: pointer;
       padding: 24px 0px;
+      display: flex;
 
-      a {
+      a, button {
         @extend h5;
         text-decoration: none;
         color: black;
+        flex-grow: 1;
       }
 
       i {
         float: right;
+        line-height: 24px; // center
         font-size: 20px;
       }
 
@@ -149,7 +152,7 @@ header {
     .nav-item-alt {
       color: $primary;
 
-      a {
+      a, button {
         color: $primary ;
       }
     }
@@ -399,9 +402,10 @@ em {
 
   .btn-circle {
     margin-top: 16px;
-    img{
+
+    img {
       width: 64px;
-      object-fit: cover;        
+      object-fit: cover;
     }
   }
 }
@@ -415,7 +419,7 @@ em {
 /*                                 login page                                 */
 /* -------------------------------------------------------------------------- */
 
-#login-form{
+#login-form {
   position: absolute;
   left: 50%;
   top: 50%;

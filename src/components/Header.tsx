@@ -1,13 +1,19 @@
 import { userInfo } from 'os'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { User } from '../services/interface'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from './AuthProvider'
 import authApi from '../services/authApi'
 
 
 const Header = () => {
     const [sideMenuOpen, setSideMenuOpen] = useState(false)
+
+    // listen for navigation events
+    const location = useLocation();
+    useEffect(() => {
+        setSideMenuOpen(false);
+    }, [location])
 
     function toggleSideMenu() {
         setSideMenuOpen(!sideMenuOpen);
@@ -60,28 +66,30 @@ const Header = () => {
                 </div>
                 <ul className='nav-list'>
                     <li className='nav-item'>
-                        <Link aria-current="page" to="/">Home</Link>
+                        <Link to="/">
+                            Home                        
                         <i className="bi bi-chevron-right"></i>
+                        </Link>
                     </li>
                     {isLoggedIn() ? (
                         <>
                             <li className='nav-item'>
-                                <Link to="#">Settings</Link>
-                                <i className="bi bi-chevron-right"></i>
+                                <Link to="#">Settings <i className="bi bi-chevron-right"></i></Link>
+                                
                             </li>
                             <li className='nav-item nav-item-alt'>
-                                <button onClick={() => onLogout()}>Logout</button>
+                                <button className='btn btn-link' onClick={() => onLogout()}>Logout</button>
                                 <i className="bi bi-chevron-right"></i>
                             </li>
                         </>
                     ) : (
                         <>
-                            <button className="btn btn-positive btn-block">
-                                <Link to='/signup'>Sign up</Link>
-                            </button>
-                            <button className="btn btn-alt btn-block">
-                                <Link to='/login'>Login</Link>
-                            </button>
+                            <Link className="btn btn-positive btn-block" to='/signup'>
+                                Sign up
+                            </Link>
+                            <Link to='/login' className="btn btn-alt btn-block">
+                                Login
+                            </Link>
                         </>)}
                 </ul>
             </nav>

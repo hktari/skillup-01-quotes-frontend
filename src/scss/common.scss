@@ -25,7 +25,7 @@ $btn-padding-horizontal: 16px;
   border: 2px solid #EFB467;
 }
 
-.btn-wide {
+.btn-wide { 
   width: calc(148px);
   height: 40px;
   padding: 0px;
@@ -47,6 +47,13 @@ $btn-padding-horizontal: 16px;
   border-radius: 50%;
   overflow: hidden;
   border: none;
+}
+
+.btn-link{
+  text-align: start;
+  border: none;
+  box-shadow: none;
+  padding: 0;
 }
 
 /* -------------------------------------------------------------------------- */
