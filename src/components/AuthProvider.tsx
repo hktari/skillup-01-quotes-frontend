@@ -8,7 +8,7 @@ export interface AuthContextType {
     logout: () => Promise<any>;
 }
 
-let AuthContext = React.createContext<AuthContextType>(null!);
+var AuthContext = React.createContext<AuthContextType>(null!);
 
 function AuthProvider({ children }: { children: React.ReactNode }) {
     let [user, setUser] = React.useState<any>(null);
@@ -28,5 +28,9 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
+
+export function useAuth() {
+    return React.useContext(AuthContext);
+  }
 
 export default AuthProvider

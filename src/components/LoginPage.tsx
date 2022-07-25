@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { AuthContextType, useAuth } from './AuthProvider'
 import LoadingIndicator from './LoadingIndicator'
 
 type Props = {}
@@ -8,14 +10,31 @@ const LoginPage = (props: Props) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
+    
+    
+    const location = useLocation()
+    // let from = location.state?.from?.pathname || "/";
+
+    const auth: AuthContextType = useAuth()
+
+    let navigate = useNavigate();
 
     function onLogin(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         console.log('login', event);
-        
+
         // mock login
         setLoading(true);
-        setTimeout(() => setLoading(false), 2000);
+        auth.login(email, password).then(() => setLoading(false))
+
+        // todo: navigate
+        // Send them back to the page they tried to visit when they were
+        // redirected to the login page. Use { replace: true } so we don't create
+        // another entry in the history stack for the login page.  This means that
+        // when they get to the protected page and click the back button, they
+        // won't end up back on the login page, which is also really nice for the
+        // user experience.
+        navigate('/', { replace: true });
     }
 
 
@@ -51,7 +70,7 @@ const LoginPage = (props: Props) => {
                     </div>
                 </form>
             </div>
-            <LoadingIndicator loading={loading}/>
+            <LoadingIndicator loading={loading} />
         </>
     )
 }
