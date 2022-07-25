@@ -3,6 +3,7 @@ import quotesApi from '../services/quotesApi'
 import QuoteComponent from './QuoteComponent'
 import { Quote, User } from '../services/interface'
 import FeaturedQuoteComponent, { FeaturedQuoteProps } from './FeaturedQuoteComponent'
+import { Link } from 'react-router-dom'
 
 
 const LandingPage = () => {
@@ -35,9 +36,9 @@ const LandingPage = () => {
                 <h5>
                     Quotastic is free online platform for you to explore the  quips, quotes, and proverbs. Sign up and express yourself.
                 </h5>
-                <button className="btn btn-positive">
+                <Link to='/signup' className="btn btn-positive">
                     Sign up
-                </button>
+                </Link>
             </section>
 
             <section id="featured-quote">
@@ -62,7 +63,7 @@ const LandingPage = () => {
                     }
                 </div>
 
-                <button className="btn btn-alt centered">Sign up to see more</button>
+                <Link to='/signup' className="btn btn-alt centered">Sign up to see more</Link>
                 <div className="white-space">
 
                 </div>

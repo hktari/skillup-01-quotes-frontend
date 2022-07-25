@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AuthContextType, useAuth } from './AuthProvider'
 import LoadingIndicator from './LoadingIndicator'
 
@@ -66,7 +66,7 @@ const LoginPage = (props: Props) => {
 
                     <div className="form-alt-action">
                         <span className='text-body'>Don't have an account ?</span>
-                        <a className='link-positive'>Sign up</a>
+                        <Link to='/signup' className='link-positive'>Sign up</Link>
                     </div>
                 </form>
             </div>
