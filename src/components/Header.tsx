@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from './AuthProvider'
 import authApi from '../services/authApi'
 import AddQuote from './AddQuote'
+import quotesApi from '../services/quotesApi'
 
 
 const Header = () => {
@@ -30,10 +31,9 @@ const Header = () => {
     const { user, logout } = useAuth()
     const isLoggedIn = () => user !== null;
 
-    const [showAddQuoteModal, setShowAddQuoteModal] = useState(false)
-
     function onSubmitNewQuote(text : string){
         console.log("submit quote", text);
+        quotesApi.add(text)
     }
 
     function onCancelAddQuote(){
@@ -108,7 +108,7 @@ const Header = () => {
                 </ul>
             </nav>
       
-            <AddQuote isOpen={showAddQuoteModal} onSubmit={onSubmitNewQuote} onCancel={onCancelAddQuote}/>
+            <AddQuote onSubmit={onSubmitNewQuote} onCancel={onCancelAddQuote}/>
         </>
     )
 }

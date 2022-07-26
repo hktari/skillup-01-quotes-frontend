@@ -26,11 +26,19 @@ async function getMostLikedQuotes(startIdx: number = 0, pageSize: number = 10): 
 }
 
 async function getMostRecentQuotes(startIdx: number = 0, pageSize: number = 10): Promise<Quote[]> {
-    return await all(startIdx, pageSize);    
+    return await all(startIdx, pageSize);
+}
+
+async function add(text: string) : Promise<Quote> {
+    const payload = { text };
+    const url = new URL(`${api_endpoint}`)
+    const response = await fetch(url.href, { method: "POST", body: JSON.stringify(payload) })
+    return await response.json();
 }
 
 const quotesApi = {
     all,
+    add,
     getRandomQuote,
     getMostLikedQuotes,
     getMostRecentQuotes

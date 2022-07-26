@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 
 interface AddQuoteProps {
-    isOpen: boolean,
     onSubmit: Function,
     onCancel: VoidFunction
 }
 
-const AddQuote = ({ isOpen, onSubmit, onCancel }: AddQuoteProps) => {
+const AddQuote = ({ onSubmit, onCancel }: AddQuoteProps) => {
     const [text, setText] = useState('')
 
     function onSubmitInternal(){
