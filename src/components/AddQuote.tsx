@@ -1,10 +1,21 @@
 import React, { useState } from 'react'
 
 interface AddQuoteProps {
-    isOpen: boolean
+    isOpen: boolean,
+    onSubmit: Function,
+    onCancel: VoidFunction
 }
 
-const AddQuote = ({ isOpen }: AddQuoteProps) => {
+const AddQuote = ({ isOpen, onSubmit, onCancel }: AddQuoteProps) => {
+    const [text, setText] = useState('')
+
+    function onSubmitInternal(){
+        document.getElementById('closeModal')?.click()          
+        onSubmit(text)
+        setText('');
+    }
+
+
     return (
         <>
             <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -18,11 +29,12 @@ const AddQuote = ({ isOpen }: AddQuoteProps) => {
                             </p>
                         </div>
                         <div className="modal-body">
-                            <textarea name="" id=""></textarea>
+                            <textarea name="" id="" value={text} onChange={e => setText(e.currentTarget.value)}></textarea>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-positive">Submit</button>
-                            <button type="button" className="btn" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" className="btn btn-positive" onClick={() => onSubmitInternal()}>Submit</button>
+                            <button type="button" className="btn" data-bs-dismiss="modal" onClick={() => onCancel()}>Cancel</button>
+                            <button type="button" id='closeModal' className="btn d-none" data-bs-dismiss="modal"></button>
                         </div>
                     </div>
                 </div>

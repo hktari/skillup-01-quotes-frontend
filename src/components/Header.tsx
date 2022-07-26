@@ -31,6 +31,15 @@ const Header = () => {
     const isLoggedIn = () => user !== null;
 
     const [showAddQuoteModal, setShowAddQuoteModal] = useState(false)
+
+    function onSubmitNewQuote(text : string){
+        console.log("submit quote", text);
+    }
+
+    function onCancelAddQuote(){
+        console.log('cancel quote');
+    }
+
     return (
         <>
             <header>
@@ -99,7 +108,7 @@ const Header = () => {
                 </ul>
             </nav>
       
-            <AddQuote isOpen={showAddQuoteModal}/>
+            <AddQuote isOpen={showAddQuoteModal} onSubmit={onSubmitNewQuote} onCancel={onCancelAddQuote}/>
         </>
     )
 }
