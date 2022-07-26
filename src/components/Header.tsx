@@ -4,6 +4,7 @@ import { User } from '../services/interface'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from './AuthProvider'
 import authApi from '../services/authApi'
+import AddQuote from './AddQuote'
 
 
 const Header = () => {
@@ -29,6 +30,7 @@ const Header = () => {
     const { user, logout } = useAuth()
     const isLoggedIn = () => user !== null;
 
+    const [showAddQuoteModal, setShowAddQuoteModal] = useState(false)
     return (
         <>
             <header>
@@ -39,12 +41,15 @@ const Header = () => {
                         <i className="bi bi-list"></i>
                     </button>
                 </div>
-                <Link to="/" className='title-brand' >
+                <Link to="/" className='title-brand' 
+                        data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                     <h3>Quotastic<i className="bi bi-quote"></i></h3>
                 </Link>
                 <div className={isLoggedIn() ? 'btn-wrapper' : 'd-none'}>
                     <button type="button"
-                        className='btn-add'>
+                        className='btn-add'
+                        data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                        >
                         <i className="bi bi-plus"></i>
                     </button>
                 </div>
@@ -67,15 +72,15 @@ const Header = () => {
                 <ul className='nav-list'>
                     <li className='nav-item'>
                         <Link to="/">
-                            Home                        
-                        <i className="bi bi-chevron-right"></i>
+                            Home
+                            <i className="bi bi-chevron-right"></i>
                         </Link>
                     </li>
                     {isLoggedIn() ? (
                         <>
                             <li className='nav-item'>
                                 <Link to="#">Settings <i className="bi bi-chevron-right"></i></Link>
-                                
+
                             </li>
                             <li className='nav-item nav-item-alt'>
                                 <button className='btn btn-link' onClick={() => onLogout()}>Logout</button>
@@ -93,6 +98,8 @@ const Header = () => {
                         </>)}
                 </ul>
             </nav>
+      
+            <AddQuote isOpen={showAddQuoteModal}/>
         </>
     )
 }

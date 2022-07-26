@@ -49,7 +49,7 @@ const LoginPage = (props: Props) => {
                 <form onSubmit={onLogin}>
                     <div className="mb-3">
                         <label htmlFor="email" className="form-label">Email</label>
-                        <input placeholder='example@net.com' type="email" className="form-control"
+                        <textarea placeholder='example@net.com' type="email" className="form-control"
                             id="email" aria-describedby="emailHelp"
                             required
                             onChange={e => setEmail(e.currentTarget.value)}
@@ -57,7 +57,7 @@ const LoginPage = (props: Props) => {
                     </div>
                     <div className="mb-3">
                         <label htmlFor="password" className="form-label">Password</label>
-                        <input type="password" className="form-control" id="password"
+                        <textarea type="password" className="form-control" id="password"
                             required
                             onChange={e => setPassword(e.currentTarget.value)}
                             value={password} />

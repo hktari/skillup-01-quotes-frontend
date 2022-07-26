@@ -45,3 +45,67 @@ input.form-control {
     border: 2px solid #DE8667;
     border-radius: 32px;
 }
+
+.modal {
+    padding: 0px 8px;
+
+    button {
+        height: 40px;
+    }
+
+    .modal-content {
+        height: 428px;
+        border-radius: 16px;
+        padding: 32px;
+
+        .modal-header {
+            display: block;
+            padding: 0;
+            border-bottom: 0;
+
+            h4 {
+                text-align: start;
+            }
+        }
+
+        .modal-body {
+            margin: 16px 0px;
+            padding: 0;
+            textarea {
+                padding: 16px;
+                width: 100%;
+                height: 100%;
+                border: none;
+                resize: none;
+                border: 2px solid #DE8667;
+                border-radius: 16px;
+            }
+
+            textarea:focus {
+                box-shadow: $primary;
+            }
+
+            // input{
+            //     word-wrap: break-word;
+            //     word-break: break-all;
+            //     overflow-wrap: break-word;
+            //     display: block;
+            //     height: 100%;
+            //     border: none;
+            //     overflow-x: hidden;
+            // }
+        }
+
+        .modal-footer {
+            border-top: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0;
+
+            .btn-positive {
+                width: 137px;
+            }
+
+        }
+    }
+}
