@@ -1,90 +1,90 @@
 {
-    "users": [
-        {
-            "id": 1,
-            "username": "Wade Warren",
-            "profileImg": {
-                "thumbnailUrl": "/assets/images/mock/profile-thumbnail2.webp"
-            },
-            "karmaPoints": 154
-        },
-        {
-            "id": 2,
-            "username": "Leslie Alexander",
-            "profileImg": {
-                "thumbnailUrl": "/assets/images/mock/profile-thumbnail5.webp"
-            },
-            "karmaPoints": 14
-        },
-        {
-            "id": 3,
-            "username": "Eleanor Pena",
-            "profileImg": {
-                "thumbnailUrl": "/assets/images/mock/profile-thumbnail1.webp"
-            },
-            "karmaPoints": 54
-        },
-        {
-            "id": 4,
-            "username": "John Scott",
-            "profileImg": {
-                "thumbnailUrl": "/assets/images/mock/profile-thumbnail4.webp"
-            },
-            "karmaPoints": 334
+  "users": [
+    {
+      "id": 1,
+      "username": "Wade Warren",
+      "profileImg": {
+        "thumbnailUrl": "/assets/images/mock/profile-thumbnail2.webp"
+      },
+      "karmaPoints": 154
+    },
+    {
+      "id": 2,
+      "username": "Leslie Alexander",
+      "profileImg": {
+        "thumbnailUrl": "/assets/images/mock/profile-thumbnail5.webp"
+      },
+      "karmaPoints": 14
+    },
+    {
+      "id": 3,
+      "username": "Eleanor Pena",
+      "profileImg": {
+        "thumbnailUrl": "/assets/images/mock/profile-thumbnail1.webp"
+      },
+      "karmaPoints": 54
+    },
+    {
+      "id": 4,
+      "username": "John Scott",
+      "profileImg": {
+        "thumbnailUrl": "/assets/images/mock/profile-thumbnail4.webp"
+      },
+      "karmaPoints": 334
+    }
+  ],
+  "quotes": [
+    {
+      "id": 1,
+      "voteCount": 275,
+      "text": "The future cannot be predicted, but futures can be invented.",
+      "voteState": "upvoted",
+      "user": {
+        "id": 1,
+        "username": "Wade Warren",
+        "profileImg": {
+          "thumbnailUrl": "/assets/images/mock/profile-thumbnail2.webp"
         }
-    ],
-    "quotes": [
-        {
-            "id": 1,
-            "voteCount": 275,
-            "text": "The future cannot be predicted, but futures can be invented.",
-            "voteState": "upvoted",
-            "user": {
-                "id": 1,
-                "username": "Wade Warren",
-                "profileImg": {
-                    "thumbnailUrl": "/assets/images/mock/profile-thumbnail2.webp"
-                }
-            }
-        },
-        {
-            "id": 2,
-            "voteCount": 175,
-            "text": "What lies bhind us and what lies before us are tniy matters compared to what lies within us.",
-            "voteState": "downvoted",
-            "user": {
-                "id": 2,
-                "username": "Leslie Alexander",
-                "profileImg": {
-                    "thumbnailUrl": "/assets/images/mock/profile-thumbnail5.webp"
-                }
-            }
-        },
-        {
-            "id": 3,
-            "voteCount": 75,
-            "voteState": "novote",
-            "text": "All our dreams can come true. IF we have the courage to pursue them.",
-            "user": {
-                "id": 3,
-                "username": "Eleanor Pena",
-                "profileImg": {
-                    "thumbnailUrl": "/assets/images/mock/profile-thumbnail1.webp"
-                }
-            }
-        },
-        {
-            "id": 4,
-            "voteCount": 45,
-            "voteState": "novote",
-            "text": "You miss a 100% of the shots you don't take.",
-            "user": {
-                "id": 4,
-                "username": "John Scott",
-                "profileImg": {
-                    "thumbnailUrl": "/assets/images/mock/profile-thumbnail4.webp"
-                }
-            }
+      }
+    },
+    {
+      "id": 2,
+      "voteCount": 175,
+      "text": "What lies bhind us and what lies before us are tniy matters compared to what lies within us.",
+      "voteState": "downvoted",
+      "user": {
+        "id": 2,
+        "username": "Leslie Alexander",
+        "profileImg": {
+          "thumbnailUrl": "/assets/images/mock/profile-thumbnail5.webp"
         }
-    ]
+      }
+    },
+    {
+      "id": 3,
+      "voteCount": 75,
+      "voteState": "novote",
+      "text": "All our dreams can come true. IF we have the courage to pursue them.",
+      "user": {
+        "id": 3,
+        "username": "Eleanor Pena",
+        "profileImg": {
+          "thumbnailUrl": "/assets/images/mock/profile-thumbnail1.webp"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "voteCount": 45,
+      "voteState": "novote",
+      "text": "You miss a 100% of the shots you don't take.",
+      "user": {
+        "id": 4,
+        "username": "John Scott",
+        "profileImg": {
+          "thumbnailUrl": "/assets/images/mock/profile-thumbnail4.webp"
+        }
+      }
+    }
+  ]
 }

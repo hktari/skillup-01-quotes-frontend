@@ -58,7 +58,7 @@ const LandingPage = () => {
                 <div className="quotes-list">
                     {
                         quotes.map(q => (
-                            <QuoteComponent quote={q} />
+                            <QuoteComponent key={q.id} quote={q} />
                         ))
                     }
                 </div>

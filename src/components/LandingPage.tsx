@@ -55,7 +55,7 @@ const LandingPage = () => {
     function MostLikedQuotes() {
         return (
             <div className="quotes-list">
-                {mostLikedQuotes.map(q => <QuoteComponent quote={q} />)}
+                {mostLikedQuotes.map(q => <QuoteComponent key={q.id} quote={q} />)}
 
                 <button className="btn btn-alt centered btn-wide">
                     load more
@@ -67,7 +67,7 @@ const LandingPage = () => {
     function MostRecentQuotes() {
         return (
             <div className="quotes-list">
-                {mostRecentQuotes.map(q => <QuoteComponent quote={q} />)}
+                {mostRecentQuotes.map(q => <QuoteComponent key={q.id} quote={q} />)}
 
                 <button className="btn btn-alt centered btn-wide">
                     load more
