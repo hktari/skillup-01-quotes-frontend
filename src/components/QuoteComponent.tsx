@@ -18,7 +18,7 @@ const QuoteComponent = ({ quote }: QuoteParams) => {
                 <div className="details">
                     <p>{text}</p>
                     <div className="user-profile">
-                        <img src={user.profileImg.thumbnailUrl} alt="" />
+                        <img src={user.userProfileImg} alt="" />
                         <span>{user.username}</span>
                     </div>
                 </div>

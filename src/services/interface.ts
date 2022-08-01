@@ -4,18 +4,16 @@ export enum VoteState {
     downvoted
 }
 
-export interface AllQuotes{
-    curPageIdx : number
-    pageSize : number
-    quotes : Quote[]
+export interface AllQuotes {
+    curPageIdx: number
+    pageSize: number
+    quotes: Quote[]
 }
 
 export interface User {
     id: number,
     username: string,
-    profileImg: {
-        thumbnailUrl: string
-    },
+    userProfileImg: string,
     karmaPoints: number
 }
 
