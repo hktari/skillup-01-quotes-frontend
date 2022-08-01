@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import internal from 'stream'
 import profilePlaceholder from '../assets/images/profilePlaceholder.webp'
+import authApi from '../services/authApi'
 
 
 type Props = {}
@@ -11,6 +13,8 @@ const SignupPage = (props: Props) => {
     const [lastName, setLastName] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
+
+    const navigate = useNavigate()
 
     function onSignup(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -25,7 +29,17 @@ const SignupPage = (props: Props) => {
             return;
         }
 
-        console.log('success');
+        async function performSignup() {
+            // TODO: pass image
+            const { errors } = await authApi.signup([firstName, lastName].join(' '), password, email, null)
+            if (errors) {
+                window.alert(errors);
+            } else {
+                navigate('/')
+            }
+        }
+
+        performSignup();
     }
 
     return (
