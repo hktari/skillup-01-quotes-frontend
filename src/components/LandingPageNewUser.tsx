@@ -12,7 +12,7 @@ const LandingPage = () => {
 
     useEffect(() => {
         async function fetchQuotes() {
-            const quotes = await quotesApi.all()
+            const quotes = await quotesApi.getMostLikedQuotes()
             setQuotes(quotes);
 
             // todo: get featured quote
