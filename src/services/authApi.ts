@@ -7,40 +7,79 @@ import { json } from "stream/consumers";
 // todo: move to config
 const api_endpoint = new URL(config.API_ENDPOINT)
 
-async function login(email: string, password: string): Promise<User> {
-    const url = new URL('/login', api_endpoint);
-    const response = await fetch(url.href, {
-        method: "POST", body: JSON.stringify({
-            email, password,
-        })
-    })
-    const users = await response.json();
+class APIError extends Error {
+    errors: string[]
+    constructor(...errors: string[]) {
+        super(errors.join('\n'))
+        this.errors = errors;
+    }
+}
 
-    return users[0] as User;
+async function login(email: string, password: string): Promise<User> {
+    try {
+        const url = new URL('/login', api_endpoint);
+        const response = await fetch(url.href, {
+            method: "POST",
+            headers: getHeaders(),
+            body: JSON.stringify({
+                email, password,
+            })
+        })
+
+        if (response.ok) {
+            const user = await response.json();
+            setToken(user.token);
+            return user as User
+        } else {
+            const error = await response.json()
+            throw new APIError(error)
+        }
+    } catch (error) {
+        console.error('Failed to execute login request')
+        console.error(error);
+        throw new APIError((error as Error).message)
+    }
 }
 
 async function logout() {
+    clearToken()
     return new Promise((res, rej) => res(true));
 }
 
 
-interface APIResult {
+interface APIResult<TResult> {
+    result: TResult,
     errors: string | null
 }
 
-async function signup(username: string, password: string, email: string, userProfileImg: MediaImage | null = null): Promise<APIResult> {
+function setToken(jwt: string) {
+    console.log('setting token: ' + jwt)
+    localStorage.setItem('token', jwt);
+}
+function clearToken() {
+    localStorage.removeItem('token')
+}
+
+function getHeaders() {
+    const headers = new Map<string, string>()
+    headers.set('Content-Type', 'application/json')
+
+    const jwt = localStorage.getItem('token')
+    if (jwt) {
+        headers.set('Authorization', 'Bearer ' + jwt)
+    }
+    return Object.fromEntries(headers);
+}
+
+async function signup(username: string, password: string, email: string, userProfileImg: MediaImage | null = null): Promise<APIResult<null>> {
     console.debug('signup')
 
     const url = new URL('/signup', api_endpoint)
 
-    // TODO: hash password
-    
     try {
         const response = await fetch(url.href, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
-                // 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: JSON.stringify({
                 username,
