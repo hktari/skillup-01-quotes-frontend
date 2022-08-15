@@ -71,7 +71,7 @@ function getHeaders() {
     return Object.fromEntries(headers);
 }
 
-async function signup(username: string, password: string, email: string, userProfileImg: MediaImage | null = null): Promise<APIResult<null>> {
+async function signup(username: string, password: string, email: string, userProfileImg: MediaImage | null = null): Promise<boolean> {
     console.debug('signup')
 
     const url = new URL('/signup', api_endpoint)
@@ -92,19 +92,13 @@ async function signup(username: string, password: string, email: string, userPro
         const responseBody = await response.json();
 
         if (!response.ok) {
-            return {
-                errors: responseBody.error
-            }
-        } else {
-            return {
-                errors: null
-            }
+            throw new APIError(responseBody.error)
         }
+
+        return true;
     } catch (error: any) {
         console.error('Error doing signup', error);
-        return {
-            errors: error.toString()
-        }
+        throw new APIError((error as Error).message)
     }
 }
 
