@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import internal from 'stream'
 import profilePlaceholder from '../assets/images/profilePlaceholder.webp'
-import authApi from '../services/authApi'
+import authApi, { APIError } from '../services/authApi'
 
 
 type Props = {}
@@ -21,7 +21,7 @@ const SignupPage = (props: Props) => {
         console.log({ email, firstName, lastName, password, confirmPassword })
 
         if (password !== confirmPassword) {
-            let inputEl = document.querySelector('input#password') as HTMLInputElement;
+            let inputEl = document.querySelector('#password') as HTMLInputElement;
             inputEl.setCustomValidity("Passwords don't match")
             inputEl.reportValidity();
             console.log('passwords don\'t match');
@@ -31,11 +31,18 @@ const SignupPage = (props: Props) => {
 
         async function performSignup() {
             // TODO: pass image
-            const { errors } = await authApi.signup([firstName, lastName].join(' '), password, email, null)
-            if (errors) {
-                window.alert(errors);
-            } else {
+            try {
+                await authApi.signup([firstName, lastName].join(' '), password, email, null)
                 navigate('/')
+            } catch (error) {
+                if (error instanceof APIError) {
+                    const errors: string[] = (error as APIError).errors
+                    console.log(errors)
+                    window.alert(errors.join('\n'))
+                } else {
+                    console.error(error)
+                    window.alert('signup failed.')
+                }
             }
         }
 

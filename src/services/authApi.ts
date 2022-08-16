@@ -7,7 +7,7 @@ import { json } from "stream/consumers";
 // todo: move to config
 const api_endpoint = new URL(config.API_ENDPOINT)
 
-class APIError extends Error {
+export class APIError extends Error {
     errors: string[]
     constructor(...errors: string[]) {
         super(errors.join('\n'))
@@ -79,8 +79,7 @@ async function signup(username: string, password: string, email: string, userPro
     try {
         const response = await fetch(url.href, {
             method: 'POST',
-            headers: {
-            },
+            headers: getHeaders(),
             body: JSON.stringify({
                 username,
                 password,
@@ -105,7 +104,7 @@ async function signup(username: string, password: string, email: string, userPro
 let authApi = {
     login,
     logout,
-    signup
+    signup,
 }
 
 export default authApi
