@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import internal from 'stream'
 import profilePlaceholder from '../assets/images/profilePlaceholder.webp'
 import authApi, { APIError } from '../services/authApi'
+import { useAuth } from './AuthProvider'
 
 
 type Props = {}
@@ -15,6 +16,7 @@ const SignupPage = (props: Props) => {
     const [confirmPassword, setConfirmPassword] = useState('')
 
     const navigate = useNavigate()
+    const auth = useAuth()
 
     function onSignup(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -33,6 +35,7 @@ const SignupPage = (props: Props) => {
             // TODO: pass image
             try {
                 await authApi.signup([firstName, lastName].join(' '), password, email, null)
+                await auth.login(email, password);
                 navigate('/')
             } catch (error) {
                 if (error instanceof APIError) {

@@ -25,7 +25,7 @@ const LoginPage = (props: Props) => {
 
         setLoading(true);
         auth.login(email, password).then(() => {
-            navigate('/');
+            navigate('/dashboard');
         }).catch(err => {
             console.error(err)
             window.alert('login failed')

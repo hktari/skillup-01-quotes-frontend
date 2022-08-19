@@ -15,6 +15,7 @@ export class APIError extends Error {
     }
 }
 
+
 async function login(email: string, password: string): Promise<User> {
     try {
         const url = new URL('/login', api_endpoint);
