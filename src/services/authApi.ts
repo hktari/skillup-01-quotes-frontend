@@ -79,10 +79,16 @@ async function signup(username: string, password: string, email: string, userPro
     }
 }
 
+async function updateProfile(email: string, username: string, userProfileImg: MediaImage | null = null): Promise<boolean> {
+    // todo: implement
+    return Promise.resolve(true)
+}
+
 let authApi = {
     login,
     logout,
     signup,
+    updateProfile
 }
 
 export default authApi

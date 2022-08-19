@@ -7,6 +7,7 @@ import authApi from '../services/authApi'
 import AddQuoteModal from './AddQuote'
 import quotesApi from '../services/quotesApi'
 import profilePlcaeholder from '../assets/images/profilePlaceholder.webp'
+import ProfileSettingsModal from './ProfileSettingsModal'
 
 const Header = () => {
     const [sideMenuOpen, setSideMenuOpen] = useState(false)
@@ -93,7 +94,9 @@ const Header = () => {
                     {isLoggedIn() ? (
                         <>
                             <li className='nav-item'>
-                                <Link to="#">Settings <i className="bi bi-chevron-right"></i></Link>
+                                <button className='btn-list' data-bs-toggle="modal" data-bs-target="#profile-settings">
+                                        Settings <i className="bi bi-chevron-right"></i>
+                                </button>
 
                             </li>
                             <li className='nav-item nav-item-alt'>
@@ -114,6 +117,7 @@ const Header = () => {
             </nav>
 
             <AddQuoteModal onSubmit={onSubmitNewQuote} onCancel={onCancelAddQuote} />
+            <ProfileSettingsModal />
         </>
     )
 }
