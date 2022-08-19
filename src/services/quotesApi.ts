@@ -2,12 +2,10 @@ import { Quote, VoteState } from "./interface";
 
 import config from '../config.json'
 import { APIError, api_endpoint, getHeaders } from "./common";
-// todo: move to config
-const quotes_api_endpoint: URL = new URL(config.API_ENDPOINT)
 
 
 async function all(startIdx: number = 0, pageSize: number = 10): Promise<Quote[]> {
-    const url = new URL(`?startIdx=${startIdx}&pageSize=${pageSize}`, quotes_api_endpoint)
+    const url = new URL(`?startIdx=${startIdx}&pageSize=${pageSize}`, api_endpoint)
     console.log(url.href)
     const response = await fetch(url.href, { method: "GET" })
     const quotes = await response.json();
@@ -28,14 +26,14 @@ async function getRandomQuote(): Promise<Quote> {
 }
 
 async function getMostLikedQuotes(startIdx: number = 0, pageSize: number = 10): Promise<Quote[]> {
-    const url = new URL('/quotes/most-liked', quotes_api_endpoint)
+    const url = new URL('/quotes/most-liked', api_endpoint)
     console.log('getMostLikedQuotes', url.href);
     const response = await fetch(url.href, { method: 'GET' })
     return await response.json();
 }
 
 async function getMostRecentQuotes(startIdx: number = 0, pageSize: number = 10): Promise<Quote[]> {
-    const url = new URL('/quotes/most-recent', quotes_api_endpoint)
+    const url = new URL('/quotes/most-recent', api_endpoint)
     console.log('getMostRecentQuotes', url.href);
     const response = await fetch(url.href, { method: 'GET' })
     return await response.json();
