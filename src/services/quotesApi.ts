@@ -43,9 +43,13 @@ async function getMostRecentQuotes(startIdx: number = 0, pageSize: number = 10):
 
 async function add(text: string): Promise<Quote> {
     const payload = { text };
-    const url = new URL(`${quotes_api_endpoint}`)
-    const response = await fetch(url.href, { method: "POST", body: JSON.stringify(payload) })
-    return await response.json();
+    const url = new URL(`/me/myquote`, api_endpoint)
+    const response = await fetch(url.href, { method: "POST", headers: getHeaders(), body: JSON.stringify(payload) })
+    if (response.ok) {
+        return (await response.json()) as Quote
+    } else {
+        throw new APIError('failed to add quote', response.statusText)
+    }
 }
 
 async function castVote(id: number, vote: VoteState): Promise<Quote> {

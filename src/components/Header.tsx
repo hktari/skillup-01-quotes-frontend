@@ -31,9 +31,14 @@ const Header = () => {
     const { user, logout } = useAuth()
     const isLoggedIn = () => user !== null;
 
-    function onSubmitNewQuote(text : string){
+    async function onSubmitNewQuote(text : string){
         console.log("submit quote", text);
-        quotesApi.add(text)
+        try {
+            const quote = await quotesApi.add(text)    
+        } catch (error) {
+            console.error(error)
+            window.alert('Failed to add quote')  
+        }
     }
 
     function onCancelAddQuote(){
@@ -80,7 +85,7 @@ const Header = () => {
                 </div>
                 <ul className='nav-list'>
                     <li className='nav-item'>
-                        <Link to="/">
+                        <Link to="/dashboard">
                             Home
                             <i className="bi bi-chevron-right"></i>
                         </Link>
