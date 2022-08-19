@@ -74,7 +74,7 @@ const Header = () => {
                         <i className='bi bi-x'></i>
                     </button>
                     <div className={isLoggedIn() ? "user-profile" : 'user-profile d-none'} >
-                        <img src={user?.profileImg.thumbnailUrl} alt="" />
+                        <img src={user?.profileImg?.thumbnailUrl} alt="" />
                         <h5>{user?.username}</h5>
                     </div>
                 </div>

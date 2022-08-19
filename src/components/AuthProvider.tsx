@@ -7,9 +7,10 @@ export interface AuthContextType {
     user: any;
     login: (username: string, pwd: string) => Promise<User>;
     logout: () => Promise<any>;
+    isLoggedIn: () => boolean
 }
 
-var AuthContext = React.createContext<AuthContextType>({ user: null, login: null!, logout: null! });
+var AuthContext = React.createContext<AuthContextType>({ user: null, login: null!, logout: null!, isLoggedIn: null! });
 
 function AuthProvider({ children }: { children: React.ReactNode }) {
     let [user, setUser] = React.useState<any>(null);
@@ -26,7 +27,9 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
         localStorage.setItem("user", "");
     };
 
-    let value = { user, login, logout };
+    let isLoggedIn = () => user !== null;
+
+    let value = { user, login, logout, isLoggedIn };
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

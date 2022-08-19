@@ -25,8 +25,7 @@ function App() {
   };
   // const tmp_user : User | null = null;
   
-  const {user} = useAuth()
-  const isLoggedIn = () => user !== null
+  const {user, isLoggedIn} = useAuth()
 
   return (
     <AuthProvider>
