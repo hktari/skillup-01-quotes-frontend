@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Quote, User, VoteState } from '../services/interface'
 import quotesApi from '../services/quotesApi'
+import profilePlaceholder from '../assets/images/profilePlaceholder.webp'
 
 interface QuoteParams {
     quote: Quote | null
@@ -12,7 +13,7 @@ const QuoteComponent = ({ quote }: QuoteParams) => {
 
     async function castVote(vote: VoteState) {
         try {
-            if(quote === null){
+            if (quote === null) {
                 console.log("can't cast vote. Quote is null")
                 return;
             }
@@ -41,7 +42,7 @@ const QuoteComponent = ({ quote }: QuoteParams) => {
                 <div className="details">
                     <p>{text}</p>
                     <div className="user-profile">
-                        <img src={user.userProfileImg} alt="" />
+                        <img src={user.userProfileImg ?? profilePlaceholder} alt="" />
                         <span>{user.username}</span>
                     </div>
                 </div>
