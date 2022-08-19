@@ -13,3 +13,12 @@ export function getHeaders() {
     }
     return Object.fromEntries(headers);
 }
+
+
+export class APIError extends Error {
+    errors: string[]
+    constructor(...errors: string[]) {
+        super(errors.join('\n'))
+        this.errors = errors;
+    }
+}

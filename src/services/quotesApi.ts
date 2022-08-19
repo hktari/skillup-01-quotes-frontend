@@ -1,7 +1,7 @@
 import { Quote } from "./interface";
 
 import config from '../config.json'
-
+import { APIError, api_endpoint, getHeaders } from "./common";
 // todo: move to config
 const quotes_api_endpoint: URL = new URL(config.API_ENDPOINT)
 
@@ -15,9 +15,16 @@ async function all(startIdx: number = 0, pageSize: number = 10): Promise<Quote[]
 }
 
 async function getRandomQuote(): Promise<Quote> {
-    const quotes = await all();
-    let randIdx = Math.round(Math.random() * quotes.length)
-    return quotes[randIdx];
+    const url = new URL('/quotes/random', api_endpoint)
+    const httpResult = await fetch(url.href, {
+        method: 'GET',
+        headers: getHeaders()
+    })
+    if (httpResult.ok) {
+        return (await httpResult.json()) as Quote
+    } else {
+        throw new APIError('failed to get random quote', httpResult.statusText)
+    }
 }
 
 async function getMostLikedQuotes(startIdx: number = 0, pageSize: number = 10): Promise<Quote[]> {

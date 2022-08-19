@@ -2,18 +2,7 @@ import { User } from "./interface";
 import { errorMonitor } from "events";
 import { Exception } from "sass";
 import { json } from "stream/consumers";
-import { api_endpoint, getHeaders } from "./common";
-
-// todo: move to config
-
-export class APIError extends Error {
-    errors: string[]
-    constructor(...errors: string[]) {
-        super(errors.join('\n'))
-        this.errors = errors;
-    }
-}
-
+import { APIError, api_endpoint, getHeaders } from "./common";
 
 async function login(email: string, password: string): Promise<User> {
     try {

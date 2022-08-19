@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import internal from 'stream'
 import profilePlaceholder from '../assets/images/profilePlaceholder.webp'
-import authApi, { APIError } from '../services/authApi'
+import authApi from '../services/authApi'
+import { APIError } from '../services/common'
+
 import { useAuth } from './AuthProvider'
 
 

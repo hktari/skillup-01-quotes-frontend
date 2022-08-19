@@ -78,7 +78,6 @@ const LandingPage = () => {
 
     return (
         <div className="container">
-            {auth.user.username}
             <section id="quote-of-the-day">
                 <h4>Quote of the day</h4>
                 <p className="text-body text-center">
