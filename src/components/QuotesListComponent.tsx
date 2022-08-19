@@ -3,8 +3,8 @@ import { Quote, QuotesList } from '../services/interface'
 import QuoteComponent from './QuoteComponent'
 
 interface QuotesListProps {
-    loadMoreItems: (curPage: number, pageSize: number) => Promise<QuotesList>
-    pageSize: number
+    loadMoreItems: (startIdx: number, pageSize: number) => Promise<QuotesList>
+    pageSize?: number
 }
 
 const QuotesListComponent = ({ loadMoreItems, pageSize = 10 }: QuotesListProps) => {
@@ -13,16 +13,16 @@ const QuotesListComponent = ({ loadMoreItems, pageSize = 10 }: QuotesListProps) 
     const [canLoadMore, setCanLoadMore] = useState(false)
 
     async function onLoadMoreClicked() {
-        const list = await loadMoreItems(curPage, pageSize)
+        const list = await loadMoreItems(curPage * pageSize, pageSize)
 
         setItems(list.quotes)
-        setCurPage(list.curPageIdx)
-        setCanLoadMore(list.curPageIdx * list.pageSize < list.totalQuotes)
+        setCurPage(list.startIdx / list.pageSize + 1)
+        setCanLoadMore(list.startIdx + list.pageSize < list.totalQuotes)
     }
     return (
         <div className="quotes-list">
             {items.map(q => <QuoteComponent key={q.id} quote={q} />)}
-            
+
             {/* todo: bind canLoadMore */}
             <button className="btn btn-alt centered btn-wide" onClick={() => onLoadMoreClicked()}>
                 load more

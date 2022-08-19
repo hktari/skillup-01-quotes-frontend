@@ -5,7 +5,7 @@ export enum VoteState {
 }
 
 export interface QuotesList {
-    curPageIdx: number
+    startIdx: number
     pageSize: number
     totalQuotes: number
     quotes: Quote[]

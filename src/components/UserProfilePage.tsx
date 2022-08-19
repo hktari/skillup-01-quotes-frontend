@@ -4,6 +4,8 @@ import { Quote, User } from '../services/interface';
 import profilePlaceholder from '../assets/images/profilePlaceholder.webp';
 import QuoteComponent from './QuoteComponent';
 import quotesApi from '../services/quotesApi';
+import QuotesListComponent from './QuotesListComponent';
+import usersApi from '../services/usersApi';
 
 type Props = {
 }
@@ -55,6 +57,10 @@ const UserProfilePage = (props: Props) => {
         )
     }
 
+    async function LoadUserLikedQuotes(startIdx: number, pageSize: number) {
+        return await usersApi.getUserLikedQuotes(user.id, startIdx, pageSize)
+    }
+
     return (
         <>
             <div className="user-profile">
@@ -82,6 +88,10 @@ const UserProfilePage = (props: Props) => {
                     <section className="most-recent-quotes">
                         <h5><em>Most recent quotes</em></h5>
                         <MostRecentQuotes />
+                    </section>
+                    <section className="liked-quotes">
+                        <h5><em>Likes</em></h5>
+                        <QuotesListComponent loadMoreItems={LoadUserLikedQuotes} />
                     </section>
                 </div>
             </div>
