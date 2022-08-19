@@ -13,6 +13,7 @@ import SignupPage from './components/SignupPage';
 import LoginPage from './components/LoginPage';
 import Layout from "./components/Layout";
 import AuthProvider, { RequireAuth, useAuth } from "./components/AuthProvider";
+import UserProfilePage from "./components/UserProfilePage";
 
 function App() {
   return (
@@ -21,12 +22,17 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<LandingPageNewUser />} />
-            <Route path="/signup" element={<SignupPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/dashboard" element={
+            <Route path="signup" element={<SignupPage />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="dashboard" element={
               <RequireAuth>
                 <LandingPage />
               </RequireAuth>} />
+            <Route path="userProfile/:id" element={
+              <RequireAuth>
+                <UserProfilePage />
+              </RequireAuth>
+            } />
           </Route>
         </Routes>
       </BrowserRouter>

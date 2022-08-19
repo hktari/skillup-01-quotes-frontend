@@ -134,7 +134,8 @@ header {
       padding: 24px 0px;
       display: flex;
 
-      a, button {
+      a,
+      button {
         @extend h5;
         text-decoration: none;
         color: black;
@@ -152,7 +153,8 @@ header {
     .nav-item-alt {
       color: $primary;
 
-      a, button {
+      a,
+      button {
         color: $primary ;
       }
     }
@@ -285,6 +287,12 @@ em {
   .user-profile {
     margin-top: 20px;
     height: 35px;
+
+    :hover {
+      cursor: grab;
+    }
+
+
 
     img {
       width: 30px;
@@ -429,4 +437,64 @@ em {
   // display: flex;
   // flex-direction: column;
   // justify-items: center;
+}
+
+
+
+
+
+/* -------------------------------------------------------------------------- */
+/*                                user profile                                */
+/* -------------------------------------------------------------------------- */
+
+.user-profile-header {
+  height: 276px;
+  background-color: $primary;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  img {
+    margin-top: 56px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border-color: transparent;
+    object-fit: cover;
+  }
+
+  h4 {
+    margin-top: 24px;
+    color: white;
+  }
+
+  $shiftdown-amount: 22px;
+
+
+  .stats-container {
+    text-align: center;
+    background-color: white;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 16px;
+    padding: 16px 32px;
+    margin-top: $shiftdown-amount;
+
+    table {
+      margin: 0 auto;
+    }
+
+    th,
+    td {
+      padding: 3px 16px;
+    }
+
+    td {
+      font-weight: 400;
+      font-size: 24px;
+    }
+  }
+}
+
+.text-orange {
+  color: $primary;
 }

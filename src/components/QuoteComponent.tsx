@@ -2,13 +2,15 @@ import React, { useState } from 'react'
 import { Quote, User, VoteState } from '../services/interface'
 import quotesApi from '../services/quotesApi'
 import profilePlaceholder from '../assets/images/profilePlaceholder.webp'
+import { Link as a, useNavigate, useNavigationType } from 'react-router-dom'
+import UserProfilePage from './UserProfilePage'
 
 interface QuoteParams {
     quote: Quote | null
 }
 
 const QuoteComponent = ({ quote }: QuoteParams) => {
-
+    const navigate = useNavigate()
     const [voteCount, setVoteCount] = useState(0)
 
     async function castVote(vote: VoteState) {
@@ -27,6 +29,12 @@ const QuoteComponent = ({ quote }: QuoteParams) => {
         }
     }
 
+    function onUserProfileClicked() {
+        navigate('/userProfile/' + quote?.user.id, {
+            state: quote?.user
+        })
+    }
+
     function QuoteCard({ id, voteState, voteCount, text, user }: Quote) {
         return (
             <>
@@ -41,7 +49,7 @@ const QuoteComponent = ({ quote }: QuoteParams) => {
                 </div>
                 <div className="details">
                     <p>{text}</p>
-                    <div className="user-profile">
+                    <div className="user-profile" onClick={() => onUserProfileClicked()}>
                         <img src={user.userProfileImg ?? profilePlaceholder} alt="" />
                         <span>{user.username}</span>
                     </div>
