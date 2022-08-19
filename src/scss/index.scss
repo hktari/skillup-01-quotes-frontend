@@ -230,14 +230,6 @@ footer {
   .text-body {
     margin-top: 18px;
   }
-
-  .quotes-list {
-    margin-top: 48px;
-  }
-
-  >button {
-    margin-top: 32px;
-  }
 }
 
 em {
@@ -447,54 +439,64 @@ em {
 /*                                user profile                                */
 /* -------------------------------------------------------------------------- */
 
-.user-profile-header {
-  height: 276px;
-  background-color: $primary;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+$stats-shiftdown-amount: 22px;
 
-  img {
-    margin-top: 56px;
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    border-color: transparent;
-    object-fit: cover;
-  }
+.user-profile {
+  .header {
+    height: 276px;
+    background-color: $primary;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-  h4 {
-    margin-top: 24px;
-    color: white;
-  }
-
-  $shiftdown-amount: 22px;
-
-
-  .stats-container {
-    text-align: center;
-    background-color: white;
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
-    border-radius: 16px;
-    padding: 16px 32px;
-    margin-top: $shiftdown-amount;
-
-    table {
-      margin: 0 auto;
+    img {
+      margin-top: 56px;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border-color: transparent;
+      object-fit: cover;
     }
 
-    th,
-    td {
-      padding: 3px 16px;
+    h4 {
+      margin-top: 24px;
+      color: white;
     }
 
-    td {
-      font-weight: 400;
-      font-size: 24px;
+    .stats-container {
+      text-align: center;
+      background-color: white;
+      box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+      border-radius: 16px;
+      padding: 16px 32px;
+      margin-top: $stats-shiftdown-amount;
+
+      table {
+        margin: 0 auto;
+      }
+
+      th,
+      td {
+        padding: 3px 16px;
+      }
+
+      td {
+        font-weight: 400;
+        font-size: 24px;
+      }
     }
   }
-}
 
-.text-orange {
-  color: $primary;
+  .most-liked-quotes {
+    margin-top: calc(40px + $stats-shiftdown-amount);
+  }
+
+  .text-orange {
+    color: $primary;
+  }
+
+  .most-recent-quotes {
+    margin-top: 34px;
+  }
+
 }
