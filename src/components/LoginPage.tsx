@@ -10,8 +10,8 @@ const LoginPage = (props: Props) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
-    
-    
+
+
     const location = useLocation()
     // let from = location.state?.from?.pathname || "/";
 
@@ -23,18 +23,14 @@ const LoginPage = (props: Props) => {
         event.preventDefault();
         console.log('login', event);
 
-        // mock login
         setLoading(true);
-        auth.login(email, password).then(() => setLoading(false))
+        auth.login(email, password).then(() => {
+            navigate('/');
+        }).catch(err => {
+            console.error(err)
+            window.alert('login failed')
+        }).finally(() => setLoading(false))
 
-        // todo: navigate
-        // Send them back to the page they tried to visit when they were
-        // redirected to the login page. Use { replace: true } so we don't create
-        // another entry in the history stack for the login page.  This means that
-        // when they get to the protected page and click the back button, they
-        // won't end up back on the login page, which is also really nice for the
-        // user experience.
-        navigate('/', { replace: true });
     }
 
 
