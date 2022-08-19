@@ -6,7 +6,7 @@ import { useAuth } from './AuthProvider'
 import authApi from '../services/authApi'
 import AddQuote from './AddQuote'
 import quotesApi from '../services/quotesApi'
-
+import profilePlcaeholder from '../assets/images/profilePlaceholder.webp'
 
 const Header = () => {
     const [sideMenuOpen, setSideMenuOpen] = useState(false)
@@ -79,7 +79,7 @@ const Header = () => {
                         <i className='bi bi-x'></i>
                     </button>
                     <div className={isLoggedIn() ? "user-profile" : 'user-profile d-none'} >
-                        <img src={user?.profileImg?.thumbnailUrl} alt="" />
+                        <img src={user?.profileImg?.thumbnailUrl ?? profilePlcaeholder} alt="" />
                         <h5>{user?.username}</h5>
                     </div>
                 </div>
