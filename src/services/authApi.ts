@@ -1,11 +1,10 @@
 import { User } from "./interface";
-import config from '../config.json'
 import { errorMonitor } from "events";
 import { Exception } from "sass";
 import { json } from "stream/consumers";
+import { api_endpoint, getHeaders } from "./common";
 
 // todo: move to config
-const api_endpoint = new URL(config.API_ENDPOINT)
 
 export class APIError extends Error {
     errors: string[]
@@ -59,17 +58,6 @@ function setToken(jwt: string) {
 }
 function clearToken() {
     localStorage.removeItem('token')
-}
-
-function getHeaders() {
-    const headers = new Map<string, string>()
-    headers.set('Content-Type', 'application/json')
-
-    const jwt = localStorage.getItem('token')
-    if (jwt) {
-        headers.set('Authorization', 'Bearer ' + jwt)
-    }
-    return Object.fromEntries(headers);
 }
 
 async function signup(username: string, password: string, email: string, userProfileImg: MediaImage | null = null): Promise<boolean> {
