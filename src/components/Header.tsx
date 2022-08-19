@@ -4,7 +4,7 @@ import { User } from '../services/interface'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from './AuthProvider'
 import authApi from '../services/authApi'
-import AddQuote from './AddQuote'
+import AddQuoteModal from './AddQuote'
 import quotesApi from '../services/quotesApi'
 import profilePlcaeholder from '../assets/images/profilePlaceholder.webp'
 
@@ -31,17 +31,17 @@ const Header = () => {
     const { user, logout } = useAuth()
     const isLoggedIn = () => user !== null;
 
-    async function onSubmitNewQuote(text : string){
+    async function onSubmitNewQuote(text: string) {
         console.log("submit quote", text);
         try {
-            const quote = await quotesApi.add(text)    
+            const quote = await quotesApi.add(text)
         } catch (error) {
             console.error(error)
-            window.alert('Failed to add quote')  
+            window.alert('Failed to add quote')
         }
     }
 
-    function onCancelAddQuote(){
+    function onCancelAddQuote() {
         console.log('cancel quote');
     }
 
@@ -55,15 +55,15 @@ const Header = () => {
                         <i className="bi bi-list"></i>
                     </button>
                 </div>
-                <Link to="/" className='title-brand' 
-                        data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <Link to="/" className='title-brand'>
                     <h3>Quotastic<i className="bi bi-quote"></i></h3>
                 </Link>
                 <div className={isLoggedIn() ? 'btn-wrapper' : 'd-none'}>
                     <button type="button"
+                        disabled={!isLoggedIn()}
                         className='btn-add'
                         data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                        >
+                    >
                         <i className="bi bi-plus"></i>
                     </button>
                 </div>
@@ -112,8 +112,8 @@ const Header = () => {
                         </>)}
                 </ul>
             </nav>
-      
-            <AddQuote onSubmit={onSubmitNewQuote} onCancel={onCancelAddQuote}/>
+
+            <AddQuoteModal onSubmit={onSubmitNewQuote} onCancel={onCancelAddQuote} />
         </>
     )
 }
