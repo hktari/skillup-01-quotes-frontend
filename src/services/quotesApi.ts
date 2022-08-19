@@ -25,17 +25,25 @@ async function getRandomQuote(): Promise<Quote> {
     }
 }
 
-async function getMostLikedQuotes(startIdx: number = 0, pageSize: number = 10): Promise<Quote[]> {
-    const url = new URL('/quotes/most-liked', api_endpoint)
-    console.log('getMostLikedQuotes', url.href);
-    const response = await fetch(url.href, { method: 'GET' })
+async function getMostLikedQuotes(userId: number | null = null, startIdx: number = 0, pageSize: number = 10): Promise<Quote[]> {
+    let url = new URL(`/quotes/most-liked?startIdx=${startIdx}&pageSize=${pageSize}`, api_endpoint).href
+    if (userId !== null) {
+        url += `&userId=${userId}`
+    }
+
+    console.log('getMostLikedQuotes', url);
+    const response = await fetch(url, { method: 'GET' })
     return await response.json();
 }
 
-async function getMostRecentQuotes(startIdx: number = 0, pageSize: number = 10): Promise<Quote[]> {
-    const url = new URL('/quotes/most-recent', api_endpoint)
-    console.log('getMostRecentQuotes', url.href);
-    const response = await fetch(url.href, { method: 'GET' })
+async function getMostRecentQuotes(userId: number | null = null, startIdx: number = 0, pageSize: number = 10): Promise<Quote[]> {
+    let url = new URL(`/quotes/most-recent?startIdx=${startIdx}&pageSize=${pageSize}`, api_endpoint).href
+    if (userId !== null) {
+        url += `&userId=${userId}`
+    }
+
+    console.log('getMostRecentQuotes', url);
+    const response = await fetch(url, { method: 'GET' })
     return await response.json();
 }
 
