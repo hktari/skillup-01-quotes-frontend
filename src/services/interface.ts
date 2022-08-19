@@ -4,9 +4,10 @@ export enum VoteState {
     downvoted = -1
 }
 
-export interface AllQuotes {
+export interface QuotesList {
     curPageIdx: number
     pageSize: number
+    totalQuotes: number
     quotes: Quote[]
 }
 
