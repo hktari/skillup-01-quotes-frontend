@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Quote, User, VoteState } from '../services/interface'
+import quotesApi from '../services/quotesApi'
 
 interface QuoteParams {
     quote: Quote | null
@@ -7,13 +8,35 @@ interface QuoteParams {
 
 const QuoteComponent = ({ quote }: QuoteParams) => {
 
+    const [voteCount, setVoteCount] = useState(0)
+
+    async function castVote(vote: VoteState) {
+        try {
+            if(quote === null){
+                console.log("can't cast vote. Quote is null")
+                return;
+            }
+
+            const quoteId = quote?.id
+            const { voteCount: voteCountUpdate } = await quotesApi.castVote(quoteId, vote)
+            setVoteCount(voteCountUpdate)
+        } catch (error) {
+            console.error(error)
+            window.alert('Failed to cast vote')
+        }
+    }
+
     function QuoteCard({ id, voteState, voteCount, text, user }: Quote) {
         return (
             <>
                 <div className="voting">
-                    <button><i className="bi bi-chevron-up"></i></button>
+                    <button onClick={() => castVote(VoteState.upvoted)} >
+                        <i className="bi bi-chevron-up"></i>
+                    </button>
                     <span>{voteCount}</span>
-                    <button><i className="bi bi-chevron-down"></i></button>
+                    <button onClick={() => castVote(VoteState.downvoted)}>
+                        <i className="bi bi-chevron-down"></i>
+                    </button>
                 </div>
                 <div className="details">
                     <p>{text}</p>
@@ -34,7 +57,7 @@ const QuoteComponent = ({ quote }: QuoteParams) => {
     }
     return (
         <div className='quote-card'>
-            {quote ? <QuoteCard id={quote.id} voteState={quote.voteState} voteCount={quote.voteCount} text={quote.text} user={quote.user} />
+            {quote ? <QuoteCard id={quote.id} voteState={quote.voteState} voteCount={voteCount} text={quote.text} user={quote.user} />
                 : <QuoteLoading />
             }
         </div>

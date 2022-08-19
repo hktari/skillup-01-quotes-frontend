@@ -1,4 +1,4 @@
-import { Quote } from "./interface";
+import { Quote, VoteState } from "./interface";
 
 import config from '../config.json'
 import { APIError, api_endpoint, getHeaders } from "./common";
@@ -48,12 +48,26 @@ async function add(text: string): Promise<Quote> {
     return await response.json();
 }
 
+async function castVote(id: number, vote: VoteState): Promise<Quote> {
+    const url = new URL(`/quotes/${id}/vote`, api_endpoint)
+    const payload = {
+        voteState: vote
+    }
+    const response = await fetch(url.href, { method: 'POST', headers: getHeaders(), body: JSON.stringify(payload) })
+    if (response.ok) {
+        return (await response.json()) as Quote
+    } else {
+        throw new APIError('failed to cast vote', response.statusText)
+    }
+}
+
 const quotesApi = {
     all,
     add,
     getRandomQuote,
     getMostLikedQuotes,
-    getMostRecentQuotes
+    getMostRecentQuotes,
+    castVote
 }
 
 export default quotesApi;
