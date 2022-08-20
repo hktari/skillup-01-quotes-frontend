@@ -1,6 +1,4 @@
 import { Quote, VoteState } from "./interface";
-
-import config from '../config.json'
 import { APIError, api_endpoint, getHeaders } from "./common";
 
 

@@ -5,9 +5,11 @@
 - signup takes you to landing page          OK
 - add quote updates landing page            OK
 - settings                                  OK
-- password field masked         
-- load more
+- password field masked                     OK
+- desktop
+- load more                                 
 - vote chevron i cast is in orange
+- deploy
 
 ## backend
 - user profile page
@@ -16,3 +18,4 @@
 - load more / pagination
 - quotes DTO (which includes voteState) in all /quotes requests
 - signup returns password
+- deploy

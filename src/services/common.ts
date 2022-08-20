@@ -1,7 +1,5 @@
 
-import config from '../config.json'
-
-export const api_endpoint = new URL(config.API_ENDPOINT)
+export const api_endpoint = new URL(process.env.REACT_APP_API_ENDPOINT!)
 
 export function getHeaders() {
     const headers = new Map<string, string>()
