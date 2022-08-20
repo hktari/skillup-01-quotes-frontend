@@ -24,6 +24,11 @@ label.form-label {
     line-height: 14px;
 }
 
+textarea.form-control{
+    overflow: hidden;
+    resize: none;
+}
+
 input.form-control {
     /* Auto layout */
     display: flex;
