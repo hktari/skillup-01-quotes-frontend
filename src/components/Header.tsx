@@ -4,10 +4,7 @@ import { User } from '../services/interface'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from './AuthProvider'
 import authApi from '../services/authApi'
-import AddQuoteModal from './AddQuote'
-import quotesApi from '../services/quotesApi'
 import profilePlcaeholder from '../assets/images/profilePlaceholder.webp'
-import ProfileSettingsModal from './ProfileSettingsModal'
 
 const Header = () => {
     const [sideMenuOpen, setSideMenuOpen] = useState(false)
@@ -31,20 +28,6 @@ const Header = () => {
     const navigate = useNavigate()
     const { user, logout } = useAuth()
     const isLoggedIn = () => user !== null;
-
-    async function onSubmitNewQuote(text: string) {
-        console.log("submit quote", text);
-        try {
-            const quote = await quotesApi.add(text)
-        } catch (error) {
-            console.error(error)
-            window.alert('Failed to add quote')
-        }
-    }
-
-    function onCancelAddQuote() {
-        console.log('cancel quote');
-    }
 
     return (
         <>
@@ -115,9 +98,6 @@ const Header = () => {
                         </>)}
                 </ul>
             </nav>
-
-            <AddQuoteModal onSubmit={onSubmitNewQuote} onCancel={onCancelAddQuote} />
-            <ProfileSettingsModal />
         </>
     )
 }

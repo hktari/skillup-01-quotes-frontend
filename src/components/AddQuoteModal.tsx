@@ -1,19 +1,25 @@
 import React, { useState } from 'react'
+import quotesApi from '../services/quotesApi';
 
-interface AddQuoteProps {
-    onSubmit: Function,
-    onCancel: VoidFunction
-}
-
-const AddQuote = ({ onSubmit, onCancel }: AddQuoteProps) => {
+const AddQuoteModal = () => {
     const [text, setText] = useState('')
 
-    function onSubmitInternal(){
-        document.getElementById('closeModal')?.click()          
-        onSubmit(text)
-        setText('');
+    async function onSubmit() {
+        console.log("submit quote", text);
+        try {
+            const quote = await quotesApi.add(text)
+            document.getElementById('closeModal')?.click()
+            setText('');
+        } catch (error) {
+            console.error(error)
+            window.alert('Failed to add quote')
+        }
     }
 
+    function onCancel() {
+        setText('')
+        console.log('cancel quote');
+    }
 
     return (
         <>
@@ -31,7 +37,7 @@ const AddQuote = ({ onSubmit, onCancel }: AddQuoteProps) => {
                             <textarea name="" id="" value={text} onChange={e => setText(e.currentTarget.value)}></textarea>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-positive" onClick={() => onSubmitInternal()}>Submit</button>
+                            <button type="button" className="btn btn-positive" onClick={() => onSubmit()}>Submit</button>
                             <button type="button" className="btn" data-bs-dismiss="modal" onClick={() => onCancel()}>Cancel</button>
                             <button type="button" id='closeModal' className="btn d-none" data-bs-dismiss="modal"></button>
                         </div>
@@ -41,4 +47,4 @@ const AddQuote = ({ onSubmit, onCancel }: AddQuoteProps) => {
         </>)
 }
 
-export default AddQuote
+export default AddQuoteModal

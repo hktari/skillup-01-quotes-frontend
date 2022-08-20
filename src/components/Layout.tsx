@@ -1,9 +1,10 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 import { User } from '../services/interface'
-import AddQuote from './AddQuote'
+
 import Footer from './Footer'
 import Header from './Header'
+import Modals from './Modals'
 
 
 const Layout = () => {
@@ -13,6 +14,7 @@ const Layout = () => {
                 <Header />
                 <main>
                     <Outlet />
+                    <Modals/>
                 </main>
             </div>
             <Footer />
