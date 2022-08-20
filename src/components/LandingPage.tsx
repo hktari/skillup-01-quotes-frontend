@@ -8,7 +8,7 @@ import { useQuotes } from './QuotesProvider'
 
 
 const LandingPage = () => {
-    const auth = useAuth();
+    const { user } = useAuth();
     const { quoteCount } = useQuotes();
     const [quoteOfTheDay, setQuoteOfTheDay] = useState<Quote | null>(null)
     const [mostLikedQuotes, setMostLikedQuotes] = useState<Quote[]>([])
@@ -21,7 +21,7 @@ const LandingPage = () => {
             setQuoteOfTheDay(await quotesApi.getRandomQuote())
         }
         fetchRandomQuote();
-    }, [true])
+    }, [user])
 
     useEffect(() => {
         // todo: pagination
@@ -32,7 +32,7 @@ const LandingPage = () => {
         }
 
         fetchMostLikedQuotes();
-    }, [true])
+    }, [user])
 
     useEffect(() => {
         console.log('refreshing most recent quotes...')
@@ -42,7 +42,7 @@ const LandingPage = () => {
             setMostRecentQuotes(await quotesApi.getMostRecentQuotes())
         }
         fetchMostRecentQuotes();
-    }, [quoteCount])
+    }, [user, quoteCount])
 
 
     function QuoteOfTheDay() {
