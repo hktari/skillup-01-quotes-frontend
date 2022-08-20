@@ -11,7 +11,7 @@ $btn-padding-horizontal: 16px;
   font-family: 'Raleway', sans-serif;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border-radius: 32px;
-  padding: 10px $btn-padding-horizontal;
+  padding: 11px $btn-padding-horizontal;
 }
 
 .btn-positive {
@@ -25,6 +25,11 @@ $btn-padding-horizontal: 16px;
   border: 2px solid #EFB467;
 }
 
+.btn-alt-yellow {
+  background-color: #EFB467;
+  color: white;
+}
+
 .btn-wide {
   width: calc(148px);
   height: 40px;
@@ -33,7 +38,6 @@ $btn-padding-horizontal: 16px;
 
 .btn-block {
   width: 100%;
-
 }
 
 .btn-toggle {
@@ -216,5 +220,26 @@ a:hover {
 
   >button {
     margin-top: 32px;
+  }
+}
+
+
+/* --------------------------------- modals --------------------------------- */
+.modal .modal-content {
+  height: 488px;
+}
+
+form {
+  label.form-label {
+    font-family: 'Raleway', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  textarea {
+    border: 2px solid #DE8667;
+    border-radius: 32px;
   }
 }

@@ -32,12 +32,12 @@ const ProfileSettingsModal = () => {
 
     return (
         <>
-            <div className="modal fade" id="profile-settings" data-bs-backdrop="static" data-bs-keyboard="false"
-                tabIndex={-1} aria-labelledby="profile-settings-label" aria-hidden="true">
+            <div className="modal fade" id="profile-settings-modal" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabIndex={-1} aria-labelledby="profile-settings-modal-label" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
                         <div className='modal-header'>
-                            <h4 id="profile-settings-label">Profile <em>settings</em></h4>
+                            <h4 id="profile-settings-modal-label">Profile <em>settings</em></h4>
                             <p className="text-body">
                                 Change your profile settings
                             </p>
@@ -53,7 +53,7 @@ const ProfileSettingsModal = () => {
                                         value={email} />
                                 </div>
                                 <div className="mb-3 row">
-                                    <div className="col-6">
+                                    <div className="col col-6">
                                         <label htmlFor="firstName" className="form-label">First Name</label>
                                         <textarea placeholder='John' type="text" className="form-control"
                                             id="firstName" aria-describedby="firstName"
@@ -61,13 +61,21 @@ const ProfileSettingsModal = () => {
                                             onChange={e => setFirstName(e.currentTarget.value)}
                                             value={firstName} />
                                     </div>
-                                    <div className="col-6">
+                                    <div className="col col-6">
                                         <label htmlFor="lastName" className="form-label">Last Name</label>
                                         <textarea placeholder='Scott' type="text" className="form-control"
                                             id="lastName" aria-describedby="lastName"
                                             required
                                             onChange={e => setLastName(e.currentTarget.value)}
                                             value={lastName} />
+                                    </ div>
+                                </div>
+                                <div className="mb-3 row">
+                                    <div className="col-xs-12 col-md-6 mb-3 mb-md-0">
+                                        <button className="btn btn-alt-yellow btn-block">Change password</button>
+                                    </div>
+                                    <div className="col-xs-12 col-md-6">
+                                        <button className="btn btn-positive btn-block">Change Profile Picture</button>
                                     </div>
                                 </div>
                             </form>

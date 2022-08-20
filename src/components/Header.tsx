@@ -77,7 +77,7 @@ const Header = () => {
                     {isLoggedIn() ? (
                         <>
                             <li className='nav-item'>
-                                <button className='btn-list' data-bs-toggle="modal" data-bs-target="#profile-settings">
+                                <button className='btn-list' data-bs-toggle="modal" data-bs-target="#profile-settings-modal">
                                         Settings <i className="bi bi-chevron-right"></i>
                                 </button>
 

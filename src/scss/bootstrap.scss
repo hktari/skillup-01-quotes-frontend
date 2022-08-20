@@ -50,7 +50,7 @@ input.form-control {
     padding: 0px 8px;
 
     button {
-        height: 40px;
+        height: 100%;
     }
 
     .modal-content {
@@ -69,7 +69,7 @@ input.form-control {
         }
 
         .modal-body {
-            margin: 16px 0px;
+            margin-top: 16px;
             padding: 0;
             textarea {
                 padding: 16px;
