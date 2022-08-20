@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import quotesApi from '../services/quotesApi';
+import { useQuotes } from './QuotesProvider';
 
 const AddQuoteModal = () => {
     const [text, setText] = useState('')
+    const { quoteCount, setQuoteCount } = useQuotes()
 
     async function onSubmit() {
         console.log("submit quote", text);
@@ -10,6 +12,7 @@ const AddQuoteModal = () => {
             const quote = await quotesApi.add(text)
             document.getElementById('closeModal')?.click()
             setText('');
+            setQuoteCount(quoteCount + 1)
         } catch (error) {
             console.error(error)
             window.alert('Failed to add quote')

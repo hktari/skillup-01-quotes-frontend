@@ -4,17 +4,17 @@ import { Quote, User } from '../services/interface'
 import quotesApi from '../services/quotesApi'
 import { AuthContextType, useAuth } from './AuthProvider'
 import QuoteComponent from './QuoteComponent'
+import { useQuotes } from './QuotesProvider'
 
 
 const LandingPage = () => {
     const auth = useAuth();
-
+    const { quoteCount } = useQuotes();
     const [quoteOfTheDay, setQuoteOfTheDay] = useState<Quote | null>(null)
-
     const [mostLikedQuotes, setMostLikedQuotes] = useState<Quote[]>([])
-    const [mostLikedQuotesCurPage, setMostLikedQuotesCurPage] = useState(0)
     const [mostRecentQuotes, setMostRecentQuotes] = useState<Quote[]>([])
 
+    console.log('refreshing LandingPage...')
 
     useEffect(() => {
         async function fetchRandomQuote() {
@@ -35,15 +35,14 @@ const LandingPage = () => {
     }, [true])
 
     useEffect(() => {
-        // todo: pagination
+        console.log('refreshing most recent quotes...')
 
+        // todo: pagination
         async function fetchMostRecentQuotes() {
             setMostRecentQuotes(await quotesApi.getMostRecentQuotes())
-
         }
-
         fetchMostRecentQuotes();
-    }, [true])
+    }, [quoteCount])
 
 
     function QuoteOfTheDay() {
