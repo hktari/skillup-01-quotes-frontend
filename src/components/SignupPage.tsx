@@ -38,7 +38,7 @@ const SignupPage = (props: Props) => {
             try {
                 await authApi.signup([firstName, lastName].join(' '), password, email, null)
                 await auth.login(email, password);
-                navigate('/')
+                navigate('/dashboard')
             } catch (error) {
                 if (error instanceof APIError) {
                     const errors: string[] = (error as APIError).errors
