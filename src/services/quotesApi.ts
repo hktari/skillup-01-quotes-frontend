@@ -19,7 +19,8 @@ async function getRandomQuote(): Promise<Quote> {
         headers: getHeaders()
     })
     if (httpResult.ok) {
-        return (await httpResult.json()) as Quote
+        const json = await httpResult.json()
+        return json as Quote
     } else {
         throw new APIError('failed to get random quote', httpResult.statusText)
     }
@@ -33,7 +34,8 @@ async function getMostLikedQuotes(userId: number | null = null, startIdx: number
 
     console.log('getMostLikedQuotes', url);
     const response = await fetch(url, { method: 'GET' })
-    return await response.json();
+    const json = await response.json()
+    return json as Quote[];
 }
 
 async function getMostRecentQuotes(userId: number | null = null, startIdx: number = 0, pageSize: number = 10): Promise<Quote[]> {

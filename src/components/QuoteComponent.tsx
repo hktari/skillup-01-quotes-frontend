@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Quote, User, VoteState } from '../services/interface'
 import quotesApi from '../services/quotesApi'
 import profilePlaceholder from '../assets/images/profilePlaceholder.webp'
 import { Link as a, useNavigate, useNavigationType } from 'react-router-dom'
 import UserProfilePage from './UserProfilePage'
+import { useAuth } from './AuthProvider'
 
 interface QuoteParams {
     quote: Quote | null
@@ -12,6 +13,15 @@ interface QuoteParams {
 const QuoteComponent = ({ quote }: QuoteParams) => {
     const navigate = useNavigate()
     const [voteCount, setVoteCount] = useState(0)
+    const [canCastVote, setCanCastVote] = useState(false)
+    const { user, isLoggedIn } = useAuth()
+
+    // initialization
+    useEffect(() => {
+        setVoteCount(quote?.voteCount ?? 0)
+        setCanCastVote(isLoggedIn())
+    }, [quote, isLoggedIn()])
+
 
     async function castVote(vote: VoteState) {
         try {
@@ -39,11 +49,15 @@ const QuoteComponent = ({ quote }: QuoteParams) => {
         return (
             <>
                 <div className="voting">
-                    <button onClick={() => castVote(VoteState.upvoted)} >
+                    <button className={voteState === VoteState.upvoted ? 'selected' : ''}
+                        disabled={!canCastVote}
+                        onClick={() => castVote(VoteState.upvoted)} >
                         <i className="bi bi-chevron-up"></i>
                     </button>
                     <span>{voteCount}</span>
-                    <button onClick={() => castVote(VoteState.downvoted)}>
+                    <button className={voteState === VoteState.downvoted ? 'selected' : ''}
+                        disabled={!canCastVote}
+                        onClick={() => castVote(VoteState.downvoted)}>
                         <i className="bi bi-chevron-down"></i>
                     </button>
                 </div>
@@ -57,6 +71,7 @@ const QuoteComponent = ({ quote }: QuoteParams) => {
             </>
         )
     }
+
     function QuoteLoading() {
         return (
             <div className="card-loading">
@@ -64,6 +79,7 @@ const QuoteComponent = ({ quote }: QuoteParams) => {
             </div>
         )
     }
+
     return (
         <div className='quote-card'>
             {quote ? <QuoteCard id={quote.id} voteState={quote.voteState} voteCount={voteCount} text={quote.text} user={quote.user} />
