@@ -56,7 +56,7 @@ const ProfileSettingsModal = () => {
                             <form>
                                 <div className="mb-3">
                                     <label htmlFor="email" className="form-label">Email</label>
-                                    <textarea placeholder='example@net.com' type="email" className="form-control"
+                                    <input placeholder='example@net.com' type="email" className="form-control"
                                         id="email" aria-describedby="emailHelp"
                                         required
                                         onChange={e => setEmail(e.currentTarget.value)}
@@ -65,7 +65,7 @@ const ProfileSettingsModal = () => {
                                 <div className="mb-3 row">
                                     <div className="col col-6">
                                         <label htmlFor="firstName" className="form-label">First Name</label>
-                                        <textarea placeholder='John' type="text" className="form-control"
+                                        <input placeholder='John' type="text" className="form-control"
                                             id="firstName" aria-describedby="firstName"
                                             required
                                             onChange={e => setFirstName(e.currentTarget.value)}
@@ -73,7 +73,7 @@ const ProfileSettingsModal = () => {
                                     </div>
                                     <div className="col col-6">
                                         <label htmlFor="lastName" className="form-label">Last Name</label>
-                                        <textarea placeholder='Scott' type="text" className="form-control"
+                                        <input placeholder='Scott' type="text" className="form-control"
                                             id="lastName" aria-describedby="lastName"
                                             required
                                             onChange={e => setLastName(e.currentTarget.value)}

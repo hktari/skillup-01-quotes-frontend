@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import * as React from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AuthContextType, useAuth } from './AuthProvider'
 import LoadingIndicator from './LoadingIndicator'
@@ -7,9 +7,9 @@ type Props = {}
 
 const LoginPage = (props: Props) => {
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [loading, setLoading] = useState(false)
+    const [email, setEmail] = React.useState('')
+    const [password, setPassword] = React.useState('')
+    const [loading, setLoading] = React.useState(false)
 
 
     const location = useLocation()
@@ -45,7 +45,7 @@ const LoginPage = (props: Props) => {
                 <form onSubmit={onLogin}>
                     <div className="mb-3">
                         <label htmlFor="email" className="form-label">Email</label>
-                        <textarea placeholder='example@net.com' type="email" className="form-control"
+                        <input placeholder='example@net.com' className="form-control"
                             id="email" aria-describedby="emailHelp"
                             required
                             onChange={e => setEmail(e.currentTarget.value)}
@@ -53,7 +53,7 @@ const LoginPage = (props: Props) => {
                     </div>
                     <div className="mb-3">
                         <label htmlFor="password" className="form-label">Password</label>
-                        <textarea type="password" className="form-control" id="password"
+                        <input type="password" className="form-control" id="password"
                             required
                             onChange={e => setPassword(e.currentTarget.value)}
                             value={password} />

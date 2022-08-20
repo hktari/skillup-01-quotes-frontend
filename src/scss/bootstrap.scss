@@ -24,7 +24,7 @@ label.form-label {
     line-height: 14px;
 }
 
-textarea.form-control{
+input.form-control{
     overflow: hidden;
     resize: none;
 }
@@ -76,7 +76,7 @@ input.form-control {
         .modal-body {
             margin-top: 16px;
             padding: 0;
-            textarea {
+            input {
                 padding: 16px;
                 width: 100%;
                 height: 100%;
@@ -86,7 +86,7 @@ input.form-control {
                 border-radius: 16px;
             }
 
-            textarea:focus {
+            input:focus {
                 box-shadow: $primary;
             }
         }
