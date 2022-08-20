@@ -1,19 +1,29 @@
-import React, { useState } from 'react'
-import authApi from '../services/authApi'
+import React, { useEffect, useState } from 'react'
 import { APIError } from '../services/common'
+import { useAuth } from './AuthProvider'
 
 const ProfileSettingsModal = () => {
     const [email, setEmail] = useState("")
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [profilePicture, setProfilePicture] = useState(null)
+    const { user, updateProfile } = useAuth()
 
-    function onSubmit(event: React.FormEvent<HTMLFormElement>) {
-        event.preventDefault();
+    useEffect(() => {
+        if (user) {
+            setEmail(user.email)
+            const [first, last] = user.username.split(' ')
+            setFirstName(first ?? '')
+            setLastName(last ?? '')
+            // todo: implement profile image
+            // setProfilePicture(user.userProfileImg)
+        }
+    }, [user])
 
+    function onSubmit() {
         async function performSubmit() {
             try {
-                await authApi.updateProfile(email, [firstName, lastName].join(' '), profilePicture)
+                await updateProfile(email, [firstName, lastName].join(' '), profilePicture)
                 document.getElementById('closeModalProfileSettings')?.click()
             } catch (error) {
                 if (error instanceof APIError) {
@@ -43,7 +53,7 @@ const ProfileSettingsModal = () => {
                             </p>
                         </div>
                         <div className="modal-body">
-                            <form onSubmit={onSubmit}>
+                            <form>
                                 <div className="mb-3">
                                     <label htmlFor="email" className="form-label">Email</label>
                                     <textarea placeholder='example@net.com' type="email" className="form-control"
@@ -72,16 +82,16 @@ const ProfileSettingsModal = () => {
                                 </div>
                                 <div className="mb-3 row">
                                     <div className="col-xs-12 col-md-6 mb-3 mb-md-0">
-                                        <button className="btn btn-alt-yellow btn-block">Change password</button>
+                                        <button type='button' className="btn btn-alt-yellow btn-block">Change password</button>
                                     </div>
                                     <div className="col-xs-12 col-md-6">
-                                        <button className="btn btn-positive btn-block">Change Profile Picture</button>
+                                        <button type='button' className="btn btn-positive btn-block">Change Profile Picture</button>
                                     </div>
                                 </div>
                             </form>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-positive" formAction='submit'>Submit</button>
+                            <button type="button" className="btn btn-positive" formAction='submit' onClick={() => onSubmit()}>Submit</button>
                             <button type="button" className="btn" data-bs-dismiss="modal">Cancel</button>
                             <button type="button" id='closeModalProfileSettings' className="btn d-none" data-bs-dismiss="modal"></button>
                         </div>

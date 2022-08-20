@@ -4,16 +4,17 @@ import authApi from '../services/authApi'
 import { User } from '../services/interface';
 
 export interface AuthContextType {
-    user: any;
+    user: User | null;
     login: (username: string, pwd: string) => Promise<User>;
     logout: () => Promise<any>;
     isLoggedIn: () => boolean
+    updateProfile: (email: string, username: string, userProfileImg: any) => void
 }
 
-var AuthContext = React.createContext<AuthContextType>({ user: null, login: null!, logout: null!, isLoggedIn: () => false });
+var AuthContext = React.createContext<AuthContextType>({ user: null, login: null!, logout: null!, isLoggedIn: () => false, updateProfile: null! });
 
 function AuthProvider({ children }: { children: React.ReactNode }) {
-    let [user, setUser] = React.useState<any>(null);
+    let [user, setUser] = React.useState<User | null>(null);
 
     let login = async (username: string, pwd: string) => {
         const user = await authApi.login(username, pwd)
@@ -27,9 +28,14 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
         localStorage.setItem("user", "");
     };
 
+    const updateProfile = async (email: string, username: string, userProfileImg: any) => {
+        const userUpdate = await authApi.updateProfile(email, username, userProfileImg)
+        setUser(userUpdate)
+    }
+
     let isLoggedIn = () => user !== null;
 
-    let value = { user, login, logout, isLoggedIn };
+    let value = { user, login, logout, isLoggedIn, updateProfile };
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

@@ -4,7 +4,7 @@ import { User } from '../services/interface'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from './AuthProvider'
 import authApi from '../services/authApi'
-import profilePlcaeholder from '../assets/images/profilePlaceholder.webp'
+import profilePlaceholder from '../assets/images/profilePlaceholder.webp'
 
 const Header = () => {
     const [sideMenuOpen, setSideMenuOpen] = useState(false)
@@ -63,7 +63,7 @@ const Header = () => {
                         <i className='bi bi-x'></i>
                     </button>
                     <div className={isLoggedIn() ? "user-profile" : 'user-profile d-none'} >
-                        <img src={user?.profileImg?.thumbnailUrl ?? profilePlcaeholder} alt="" />
+                        <img src={user?.userProfileImg ?? profilePlaceholder} alt="" />
                         <h5>{user?.username}</h5>
                     </div>
                 </div>

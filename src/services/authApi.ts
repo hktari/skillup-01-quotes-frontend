@@ -79,9 +79,9 @@ async function signup(username: string, password: string, email: string, userPro
     }
 }
 
-async function updateProfile(email: string, username: string, userProfileImg: MediaImage | null = null): Promise<boolean> {
+async function updateProfile(email: string, username: string, userProfileImg: MediaImage | null = null): Promise<User> {
     // todo: implement
-    return Promise.resolve(true)
+    return Promise.resolve({ email, username, userProfileImg: null, id: 99, karmaPoints: 0 } as User)
 }
 
 let authApi = {

@@ -14,7 +14,8 @@ export interface QuotesList {
 export interface User {
     id: number,
     username: string,
-    userProfileImg: string,
+    email: string,
+    userProfileImg: string | null,
     karmaPoints: number
 }
 
