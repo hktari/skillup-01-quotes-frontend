@@ -39,13 +39,20 @@
             margin-top: 200px;
         }
 
-        #welcome{
-            .btn{
+        #welcome {
+            .btn {
                 margin-top: 32px;
             }
         }
-        .explore-quotes {
-            h4 {}
+
+        #explore-quotes {
+            >div>h4 {
+                margin-top: 124px;
+            }
+
+            h4+p.text-body {
+                margin-top: 10px;
+            }
         }
     }
 }

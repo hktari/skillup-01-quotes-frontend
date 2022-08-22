@@ -1,5 +1,6 @@
-import { Quote, VoteState } from "./interface";
+import { Quote, QuotesList, VoteState } from "./interface";
 import { APIError, api_endpoint, getHeaders } from "./common";
+import { EmptyQuotesList } from "../util/util";
 
 
 async function all(startIdx: number = 0, pageSize: number = 10): Promise<Quote[]> {
@@ -47,6 +48,17 @@ async function getMostRecentQuotes(userId: number | null = null, startIdx: numbe
     return await response.json();
 }
 
+async function getMostUpvotedQuotes(startIdx: number = 0, pageSize: number = 10): Promise<QuotesList> {
+    // todo: fix endpoint
+    let url = new URL(`/quotes/most-recent?startIdx=${startIdx}&pageSize=${pageSize}`, api_endpoint).href
+    const response = await fetch(url, { method: 'GET' })
+    const itemsList = await response.json()
+    const quotesList = EmptyQuotesList()
+    quotesList.quotes = itemsList
+    return quotesList
+
+}
+
 async function add(text: string): Promise<Quote> {
     const payload = { text };
     const url = new URL(`/me/myquote`, api_endpoint)
@@ -77,6 +89,7 @@ const quotesApi = {
     getRandomQuote,
     getMostLikedQuotes,
     getMostRecentQuotes,
+    getMostUpvotedQuotes,
     castVote
 }
 

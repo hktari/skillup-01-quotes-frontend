@@ -4,11 +4,22 @@ import QuoteComponent from './QuoteComponent'
 import { Quote, User } from '../services/interface'
 import FeaturedQuoteComponent, { FeaturedQuoteProps } from './FeaturedQuoteComponent'
 import { Link } from 'react-router-dom'
-
+import QuotesListComponent from './QuotesListComponent'
+import { EmptyQuotesList } from '../util/util'
 
 const LandingPage = () => {
     const [quotes, setQuotes] = useState<Quote[]>([])
     const [featuredQuoteProps, setFeaturedQuoteParams] = useState<FeaturedQuoteProps>({ top: null, bottom: null, featured: null })
+
+    async function getMostUpvotedQuotes(startIdx: number, pageSize: number) {
+        try {
+            return await quotesApi.getMostUpvotedQuotes(startIdx, pageSize)
+        } catch (error) {
+            console.error(error)
+            window.alert('Failed to fetch quotes...')
+            return EmptyQuotesList()
+        }
+    }
 
     useEffect(() => {
         async function fetchQuotes() {
@@ -54,26 +65,35 @@ const LandingPage = () => {
 
 
             <section id="explore-quotes">
-                <h4 className='text-center'>Explore the world of <em>fantastic quotes</em> </h4>
+                <h2 className="d-none d-md-block text-center">Explore the world of <br /> <em>fantastic quotes</em> </h2>
+                <h4 className='d-md-none text-center'>Explore the world of <em>fantastic quotes</em> </h4>
+                <div className="d-none d-md-block">
+                    <h4 className="text-center"><em>Most upvoted quotes</em></h4>
+                    <p className="text-body text-center">Most upvoted quotes on the platform.
+                        Sign up or login to like the quotes<br />
+                        and keep them saved in your profile</p>
 
-                <h5 className='text-center text-color-primary'>Most liked quotes</h5>
-                <p className="text-body text-center">
-                    Most liked quotes on the platform.
-                    Sign up or login to like the quotes
-                    and keep them saved in your profile
-
-                </p>
-                <div className="quotes-list">
-                    {
-                        quotes.map(q => (
-                            <QuoteComponent key={q.id} quote={q} />
-                        ))
-                    }
+                    <QuotesListComponent loadMoreItems={getMostUpvotedQuotes} />
                 </div>
+                <div className="d-md-none">
+                    <h5 className='text-center text-color-primary'>Most liked quotes</h5>
+                    <p className="text-body text-center">
+                        Most liked quotes on the platform.
+                        Sign up or login to like the quotes
+                        and keep them saved in your profile
 
-                <Link to='/signup' className="btn btn-alt centered">Sign up to see more</Link>
+                    </p>
+                    <div className="quotes-list">
+                        {
+                            quotes.map(q => (
+                                <QuoteComponent key={q.id} quote={q} />
+                            ))
+                        }
+                    </div>
+
+                    <Link to='/signup' className="btn btn-alt centered">Sign up to see more</Link>
+                </div>
                 <div className="white-space">
-
                 </div>
             </section >
         </div>
