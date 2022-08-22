@@ -85,7 +85,7 @@ const Header = () => {
                 </div>
             </header>
 
-            <nav id='side-menu' className={sideMenuOpen ? 'open' : ''}>
+            <nav id='side-menu' className={sideMenuOpen ? 'd-md-none open' : 'd-md-none'}>
                 <div className="header">
                     <button type="button"
                         onClick={() => toggleSideMenu()}

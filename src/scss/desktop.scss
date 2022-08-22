@@ -6,7 +6,7 @@
     #login-form {
         max-width: $container-width;
 
-     
+
 
         >p {
             text-align: center;
@@ -17,18 +17,35 @@
         }
     }
 
-    #signup-container{
+    #signup-container {
         max-width: $container-width;
     }
 
-    header{
-        .btn-wrapper{
+    header {
+        .btn-wrapper {
             flex-grow: 0;
             order: 1;
         }
-        .title-brand{
+
+        .title-brand {
             order: 0;
             flex-grow: 1;
+        }
+    }
+
+
+    #landing-page-new-user {
+        >:first-child {
+            margin-top: 200px;
+        }
+
+        #welcome{
+            .btn{
+                margin-top: 32px;
+            }
+        }
+        .explore-quotes {
+            h4 {}
         }
     }
 }
