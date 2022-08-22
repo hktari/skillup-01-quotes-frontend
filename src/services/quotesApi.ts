@@ -54,6 +54,9 @@ async function getMostUpvotedQuotes(startIdx: number = 0, pageSize: number = 10)
     const response = await fetch(url, { method: 'GET' })
     const itemsList = await response.json()
     const quotesList = EmptyQuotesList()
+    quotesList.pageSize = pageSize;
+    quotesList.startIdx = startIdx;
+    quotesList.totalQuotes = 21;
     quotesList.quotes = itemsList
     return quotesList
 
