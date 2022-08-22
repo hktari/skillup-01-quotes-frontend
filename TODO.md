@@ -9,7 +9,7 @@
 - desktop
 - load more                                 
 - vote chevron i cast is in orange
-- deploy
+- deploy                                    OK
 
 ## backend
 - user profile page
@@ -18,4 +18,4 @@
 - load more / pagination
 - quotes DTO (which includes voteState) in all /quotes requests
 - signup returns password
-- deploy
+- deploy                                    OK
