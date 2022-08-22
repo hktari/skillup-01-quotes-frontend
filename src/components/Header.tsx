@@ -5,6 +5,17 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from './AuthProvider'
 import authApi from '../services/authApi'
 import profilePlaceholder from '../assets/images/profilePlaceholder.webp'
+import HeaderLoginButtons from './HeaderLoginButtons'
+import HeaderSignupButtons from './HeaderSignupButtons'
+import HeaderLoggedInButtons from './HeaderLoggedInButtons'
+import HeaderNewUserLandingPageButtons from './HeaderNewUserLandingPageButtons'
+
+enum HeaderType {
+    Login,
+    Signup,
+    LandingPageNewUser,
+    LoggedIn
+}
 
 const Header = () => {
     const [sideMenuOpen, setSideMenuOpen] = useState(false)
@@ -26,13 +37,34 @@ const Header = () => {
     }
 
     const navigate = useNavigate()
-    const { user, logout } = useAuth()
-    const isLoggedIn = () => user !== null;
+    const { user, logout, isLoggedIn } = useAuth()
+
+    let headerType: HeaderType = HeaderType.LandingPageNewUser
+
+    const curPagePath = location.pathname
+    if (isLoggedIn()) {
+        headerType = HeaderType.LoggedIn
+    }
+    else if (curPagePath.includes('login')) {
+        headerType = HeaderType.Login
+    } else if (curPagePath.includes('signup')) {
+        headerType = HeaderType.Signup
+    } else {
+        headerType = HeaderType.LandingPageNewUser
+    }
+
 
     return (
         <>
             <header>
-                <div className="btn-wrapper">
+                <div className="btn-wrapper d-none d-md-block">
+                    {headerType === HeaderType.Login ? <HeaderLoginButtons /> :
+                        headerType === HeaderType.Signup ? <HeaderSignupButtons /> :
+                            headerType === HeaderType.LoggedIn ? <HeaderLoggedInButtons /> :
+                                <HeaderNewUserLandingPageButtons />
+                    }
+                </div>
+                <div className="btn-wrapper d-md-none">
                     <button type="button"
                         className='btn-toggle'
                         onClick={() => toggleSideMenu()}>
@@ -78,7 +110,7 @@ const Header = () => {
                         <>
                             <li className='nav-item'>
                                 <button className='btn-list' data-bs-toggle="modal" data-bs-target="#profile-settings-modal">
-                                        Settings <i className="bi bi-chevron-right"></i>
+                                    Settings <i className="bi bi-chevron-right"></i>
                                 </button>
 
                             </li>

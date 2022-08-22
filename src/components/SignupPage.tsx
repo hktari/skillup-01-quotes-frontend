@@ -55,7 +55,7 @@ const SignupPage = (props: Props) => {
     }
 
     return (
-        <div className="container">
+        <div id="signup-container" className="container">
             <section id="signup-title">
                 <h4>What is your <em>name ?</em></h4>
                 <p className="text-body text-center">
