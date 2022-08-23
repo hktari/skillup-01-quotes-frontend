@@ -43,20 +43,20 @@ const LandingPage = () => {
     return (
         <div id='landing-page-new-user' className='container'>
             <div className="row">
-                <div className="col col-md-6">
+                <div className="col col-sm-12 col-md-6">
                     <section id="welcome">
                         <h1 className='d-none d-md-block'>Welcome<br /> to <em>Quotastic</em></h1>
                         <h4 className='d-md-none'>Welcome<br /> to <em>Quotastic</em></h4>
                         <h5>
                             Quotastic is free online platform for you to explore the  quips, quotes, and proverbs. Sign up and express yourself.
                         </h5>
-                        <Link to='/signup' className="btn btn-positive">
-                            Sign up
+                        <Link to='/signup' >
+                            <button className="btn btn-positive">Sign up</button>
                         </Link>
                     </section>
                 </div>
-                <div className="col col-md-2"></div>
-                <div className="col col-md-4">
+                <div className="col-sm-12 col-md-2"></div>
+                <div className="col-sm-12 col-md-4">
                     <section id="featured-quote">
                         <RenderFeaturedQuote featured={featuredQuoteProps.featured} top={featuredQuoteProps.top} bottom={featuredQuoteProps.bottom} />
                     </section>
