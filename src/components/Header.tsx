@@ -10,11 +10,16 @@ import HeaderSignupButtons from './HeaderSignupButtons'
 import HeaderLoggedInButtons from './HeaderLoggedInButtons'
 import HeaderNewUserLandingPageButtons from './HeaderNewUserLandingPageButtons'
 
-enum HeaderType {
+enum HeaderButtonsConfig {
     Login,
     Signup,
     LandingPageNewUser,
     LoggedIn
+}
+
+enum HeaderType {
+    default,
+    inverted // primary color is used as background
 }
 
 const Header = () => {
@@ -39,28 +44,39 @@ const Header = () => {
     const navigate = useNavigate()
     const { user, logout, isLoggedIn } = useAuth()
 
-    let headerType: HeaderType = HeaderType.LandingPageNewUser
 
-    const curPagePath = location.pathname
-    if (isLoggedIn()) {
-        headerType = HeaderType.LoggedIn
+    function getHeaderButtonConfig(pagePath: string) {
+        let val: HeaderButtonsConfig = HeaderButtonsConfig.LandingPageNewUser
+        if (isLoggedIn()) {
+            val = HeaderButtonsConfig.LoggedIn
+        }
+        else if (pagePath.includes('login')) {
+            val = HeaderButtonsConfig.Login
+        } else if (pagePath.includes('signup')) {
+            val = HeaderButtonsConfig.Signup
+        } else {
+            val = HeaderButtonsConfig.LandingPageNewUser
+        }
+        return val
     }
-    else if (curPagePath.includes('login')) {
-        headerType = HeaderType.Login
-    } else if (curPagePath.includes('signup')) {
-        headerType = HeaderType.Signup
-    } else {
-        headerType = HeaderType.LandingPageNewUser
+    function getHeaderType(pagePath: string) {
+        let val = HeaderType.default;
+        if (pagePath.includes('userProfile')) {
+            val = HeaderType.inverted;
+        }
+        return val;
     }
 
+    const headerButtonConfig = getHeaderButtonConfig(location.pathname)
+    const headerType = getHeaderType(location.pathname)
 
     return (
         <>
-            <header>
+            <header className={headerType === HeaderType.inverted ? 'header-inverted' : ''}>
                 <div className="btn-wrapper d-none d-md-block">
-                    {headerType === HeaderType.Login ? <HeaderLoginButtons /> :
-                        headerType === HeaderType.Signup ? <HeaderSignupButtons /> :
-                            headerType === HeaderType.LoggedIn ? <HeaderLoggedInButtons /> :
+                    {headerButtonConfig === HeaderButtonsConfig.Login ? <HeaderLoginButtons /> :
+                        headerButtonConfig === HeaderButtonsConfig.Signup ? <HeaderSignupButtons /> :
+                            headerButtonConfig === HeaderButtonsConfig.LoggedIn ? <HeaderLoggedInButtons /> :
                                 <HeaderNewUserLandingPageButtons />
                     }
                 </div>

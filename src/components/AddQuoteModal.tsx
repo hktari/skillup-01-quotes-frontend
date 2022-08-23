@@ -37,7 +37,7 @@ const AddQuoteModal = () => {
                             </p>
                         </div>
                         <div className="modal-body">
-                            <textarea name="" id="" value={text} onChange={e => setText(e.currentTarget.value)}></textarea>
+                            <input name="" id="" value={text} onChange={e => setText(e.currentTarget.value)}/>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-positive" onClick={() => onSubmit()}>Submit</button>

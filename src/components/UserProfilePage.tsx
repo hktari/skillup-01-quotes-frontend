@@ -10,7 +10,7 @@ import usersApi from '../services/usersApi';
 type Props = {
 }
 
-const UserProfilePage = (props: Props) => {
+const  UserProfilePage = (props: Props) => {
     const params = useParams()
     const location = useLocation()
     const user = location.state as User

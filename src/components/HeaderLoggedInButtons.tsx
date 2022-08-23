@@ -21,13 +21,19 @@ const HeaderLoggedInButtons = (props: Props) => {
     }
   }
 
+  function OnProfileIconClicked() {
+    navigate(`/userProfile/${auth.user?.id}`, {
+      state: auth.user
+    })
+  }
+
   return (
     <>
       <Link to='/dashboard'>Home</Link>
       <Link to='/settings'>Settings</Link>
       <Link to='/dashboard' onClick={onLogout}>Logout</Link>
 
-      <img className='profile-icon' src={auth.user?.userProfileImg ?? profilePlaceholder} alt="profile icon" />
+      <img className='profile-icon' src={auth.user?.userProfileImg ?? profilePlaceholder} alt="profile icon" onClick={OnProfileIconClicked} />
     </>
   )
 }

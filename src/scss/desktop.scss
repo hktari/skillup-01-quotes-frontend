@@ -38,13 +38,15 @@
 
     /* --------------------------------- header --------------------------------- */
     header {
+        padding: 46px 70px;
         .btn-wrapper {
             flex-grow: 0;
             order: 1;
 
-            button:hover{
+            button.btn-add:hover {
                 opacity: 0.5;
             }
+
             a {
                 text-decoration: none;
                 /* Orange */
@@ -60,10 +62,12 @@
                 height: 48px;
                 width: 48px;
                 margin: 0 8px;
+                margin-left: 16px;
                 border-radius: 33%;
                 cursor: pointer;
             }
-            img.profile-icon:hover{
+
+            img.profile-icon:hover {
                 opacity: 0.5;
             }
 
@@ -72,6 +76,32 @@
         .title-brand {
             order: 0;
             flex-grow: 1;
+        }
+    }
+
+    header.header-inverted {
+        background-color: $primary;
+
+        a {
+            color: white;
+        }
+
+        img.profile-icon {
+            background-color: $primary;
+
+        }
+
+        button.btn-add {
+            background-color: $primary;
+            color: white;
+        }
+
+        .title-brand {
+            color: white;
+
+            i {
+                color: white;
+            }
         }
     }
 
