@@ -1,6 +1,12 @@
 @media screen and (min-width: 768px) {
     $container-width: 820px;
 
+    .quote-card {
+        margin: 10px;
+        padding: 18px 32px 18px 18px;
+        width: 390px;
+    }
+
     .quotes-list {
         .items-md {
             display: flex;
@@ -8,11 +14,6 @@
             flex-wrap: wrap;
         }
 
-        .quote-card {
-            margin: 10px;
-            width: 30%;
-            padding: 18px 32px 18px 18px;
-        }
 
     }
 
@@ -47,6 +48,10 @@
         }
     }
 
+    h4+p.text-body {
+        margin-top: 10px;
+    }
+
 
     #landing-page-new-user {
         >:first-child {
@@ -64,9 +69,20 @@
                 margin-top: 124px;
             }
 
-            h4+p.text-body {
-                margin-top: 10px;
-            }
+        }
+    }
+
+
+    #landing-page {
+        #quote-of-the-day {
+            margin-top: 177px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        div #most-upvoted-quotes {
+            margin-top: 127px;
         }
     }
 }
