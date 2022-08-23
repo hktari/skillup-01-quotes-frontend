@@ -10,7 +10,7 @@ import usersApi from '../services/usersApi';
 type Props = {
 }
 
-const  UserProfilePage = (props: Props) => {
+const UserProfilePage = (props: Props) => {
     const params = useParams()
     const location = useLocation()
     const user = location.state as User
@@ -24,14 +24,14 @@ const  UserProfilePage = (props: Props) => {
             setMostLikedQuotes(await quotesApi.getMostLikedQuotes(user.id))
         }
         getMostLikedQuotes()
-    }, [user.id, mostLikedQuotes])
+    }, [user.id])
 
     useEffect(() => {
         const getMostRecentQuotes = async () => {
             setMostRecentQuotes(await quotesApi.getMostRecentQuotes(user.id))
         }
         getMostRecentQuotes()
-    }, [user.id, mostRecentQuotes])
+    }, [user.id])
 
     function MostLikedQuotes() {
         return (
@@ -69,9 +69,16 @@ const  UserProfilePage = (props: Props) => {
                     <h4>{user.username}</h4>
                     <div className="stats-container">
                         <table>
+                            <colgroup>
+                                <th />
+                                <col style={{ width: '50%' }} />
+                                <col style={{ width: '50%' }} />
+                            </colgroup>
                             <tr>
-                                <th className='text-body'>Quotes</th>
-                                <th className='text-body'>Quotastic karma</th>
+                                <th className='text-body'>
+                                    <span>Quotes</span> </th>
+                                <th className='text-body'>
+                                    <span>Quotastic karma</span> </th>
                             </tr>
                             <tr>
                                 <td className='text-orange'><h5>{quoteCount}</h5> </td>
@@ -80,19 +87,44 @@ const  UserProfilePage = (props: Props) => {
                         </table>
                     </div>
                 </section>
-                <div className="container">
-                    <section className="most-liked-quotes">
-                        <h5><em>Most liked quotes</em></h5>
-                        <MostLikedQuotes />
-                    </section>
-                    <section className="most-recent-quotes">
-                        <h5><em>Most recent quotes</em></h5>
-                        <MostRecentQuotes />
-                    </section>
-                    <section className="liked-quotes">
-                        <h5><em>Likes</em></h5>
-                        <QuotesListComponent loadMoreItems={LoadUserLikedQuotes} />
-                    </section>
+                <div className="container body">
+                    <div className="d-sm-none d-md-block">
+                        <div className="row">
+                            <div className="col-md-4">
+                                <section className="most-liked-quotes">
+                                    <h5><em>Most liked quotes</em></h5>
+                                    <MostLikedQuotes />
+                                </section>
+                            </div>
+                            <div className="col-md-4">
+                                <section className="most-recent-quotes">
+                                    <h5><em>Most recent quotes</em></h5>
+                                    <MostRecentQuotes />
+                                </section>
+                            </div>
+                            <div className="col-md-4">
+                                <section className="most-liked-quotes">
+                                    <h5><em>Likes</em></h5>
+                                    <QuotesListComponent loadMoreItems={LoadUserLikedQuotes} />
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="d-md-none">
+                        <section className="most-liked-quotes">
+                            <h5><em>Most liked quotes</em></h5>
+                            <MostLikedQuotes />
+                        </section>
+                        <section className="most-recent-quotes">
+                            <h5><em>Most recent quotes</em></h5>
+                            <MostRecentQuotes />
+                        </section>
+                        <section className="liked-quotes">
+                            <h5><em>Likes</em></h5>
+                            <QuotesListComponent loadMoreItems={LoadUserLikedQuotes} />
+                        </section>
+                    </div>
                 </div>
             </div>
             <div className="white-space"></div>

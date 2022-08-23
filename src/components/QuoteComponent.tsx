@@ -16,11 +16,13 @@ const QuoteComponent = ({ quote }: QuoteParams) => {
     const [canCastVote, setCanCastVote] = useState(false)
     const { user, isLoggedIn } = useAuth()
 
+    const loggedIn = isLoggedIn()
+
     // initialization
     useEffect(() => {
         setVoteCount(quote?.voteCount ?? 0)
-        setCanCastVote(isLoggedIn())
-    }, [quote, isLoggedIn()])
+        setCanCastVote(loggedIn)
+    }, [quote, loggedIn])
 
 
     async function castVote(vote: VoteState) {
