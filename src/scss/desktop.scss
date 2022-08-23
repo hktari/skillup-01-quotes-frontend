@@ -1,3 +1,5 @@
+@import './common';
+
 @media screen and (min-width: 768px) {
     $container-width: 820px;
 
@@ -21,8 +23,6 @@
     #login-form {
         max-width: $container-width;
 
-
-
         >p {
             text-align: center;
         }
@@ -36,10 +36,37 @@
         max-width: $container-width;
     }
 
+    /* --------------------------------- header --------------------------------- */
     header {
         .btn-wrapper {
             flex-grow: 0;
             order: 1;
+
+            button:hover{
+                opacity: 0.5;
+            }
+            a {
+                text-decoration: none;
+                /* Orange */
+                color: $primary;
+                margin: 0px 12px;
+            }
+
+            a:hover {
+                opacity: 0.5;
+            }
+
+            img.profile-icon {
+                height: 48px;
+                width: 48px;
+                margin: 0 8px;
+                border-radius: 33%;
+                cursor: pointer;
+            }
+            img.profile-icon:hover{
+                opacity: 0.5;
+            }
+
         }
 
         .title-brand {
@@ -74,8 +101,11 @@
 
 
     #landing-page {
+        >:first-child {
+            margin-top: 100px;
+        }
+
         #quote-of-the-day {
-            margin-top: 177px;
             display: flex;
             flex-direction: column;
             align-items: center;

@@ -64,7 +64,7 @@ const QuoteComponent = ({ quote }: QuoteParams) => {
                 <div className="details">
                     <p>{text}</p>
                     <div className="user-profile" onClick={() => onUserProfileClicked()}>
-                        <img src={user.userProfileImg ?? profilePlaceholder} alt="" />
+                        <img className='profile-icon' src={user.userProfileImg ?? profilePlaceholder} alt="" />
                         <span>{user.username}</span>
                     </div>
                 </div>
