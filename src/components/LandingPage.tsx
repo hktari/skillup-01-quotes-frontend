@@ -13,7 +13,7 @@ const LandingPage = () => {
     const { user } = useAuth();
     const { quoteCount } = useQuotes();
     const [quoteOfTheDay, setQuoteOfTheDay] = useState<Quote | null>(null)
-
+    const [lastQuoteCount, setLastQuoteCount] = useState(0)
 
     function QuoteOfTheDay() {
         return (
@@ -69,7 +69,7 @@ const LandingPage = () => {
                         Give a like to the ones you like to<br />
                         keep them saved in your profile.</p>
 
-                    <QuotesListComponent loadMoreItems={loadMostUpvotedQuotes} />
+                    <QuotesListComponent loadMoreItems={loadMostUpvotedQuotes} needsUpdate={quoteCount} />
                 </section>
             </div>
             <div className="d-md-none">
@@ -78,14 +78,14 @@ const LandingPage = () => {
                     <p className="text-body text-center">
                         Most liked quotes on the platform.  Sign up or login to like the quotes  and keep them saved in your profile
                     </p>
-                    <QuotesListComponent loadMoreItems={loadMostLikedQuotes} />
+                    <QuotesListComponent loadMoreItems={loadMostLikedQuotes} needsUpdate={quoteCount} />
                 </section>
                 <section id="most-recent-quotes">
                     <h5 className='text-color-primary'>Most recent quotes</h5>
                     <p className="text-body">
                         Recent quotes updates as soon user adds new quote. Go ahed show them that you seen the new quote and like the ones you like.
                     </p>
-                    <QuotesListComponent loadMoreItems={loadMostRecentQuotes} />
+                    <QuotesListComponent loadMoreItems={loadMostRecentQuotes} needsUpdate={quoteCount} />
                 </section>
             </div>
             <div className="white-space"></div>

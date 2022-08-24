@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import quotesApi from '../services/quotesApi'
 import QuoteComponent from './QuoteComponent'
-import { Quote, User } from '../services/interface'
+import { Quote, QuotesList, User } from '../services/interface'
 import FeaturedQuoteComponent, { FeaturedQuoteProps } from './FeaturedQuoteComponent'
 import { Link } from 'react-router-dom'
 import QuotesListComponent from './QuotesListComponent'
@@ -11,34 +11,27 @@ const LandingPage = () => {
     const [quotes, setQuotes] = useState<Quote[]>([])
     const [featuredQuoteProps, setFeaturedQuoteParams] = useState<FeaturedQuoteProps>({ top: null, bottom: null, featured: null })
 
-    async function getMostUpvotedQuotes(startIdx: number, pageSize: number) {
-        try {
-            return await quotesApi.getMostUpvotedQuotes(startIdx, pageSize)
-        } catch (error) {
-            console.error(error)
-            window.alert('Failed to fetch quotes...')
-            return EmptyQuotesList()
+
+    function getQuotesOrEmptyList(getQuotesFunc: (startIdx: number, pageSize: number) => Promise<QuotesList>) {
+        return async function (startIdx: number, pageSize: number): Promise<QuotesList> {
+            try {
+                return await getQuotesFunc(startIdx, pageSize)
+            } catch (error) {
+                console.error(error)
+                window.alert('Failed to fetch quotes...')
+                return EmptyQuotesList()
+            }
         }
     }
 
     useEffect(() => {
         async function fetchQuotes() {
-            const quotes = await quotesApi.getMostLikedQuotes()
-            setQuotes(quotes);
+            const quote = await quotesApi.getRandomQuote()
 
-            // todo: get featured quote
-            console.log(quotes[0])
-            setFeaturedQuoteParams({ top: quotes[0], bottom: quotes[0], featured: quotes[0] })
+            setFeaturedQuoteParams({ top: quote, bottom: quote, featured: quote })
         }
         fetchQuotes();
-    }, [true])
-
-    function RenderFeaturedQuote({ featured, top, bottom }: FeaturedQuoteProps) {
-        return (
-            // todo: why is cast necessary ?
-            <FeaturedQuoteComponent featured={featuredQuoteProps.featured} top={featuredQuoteProps.top} bottom={featuredQuoteProps.bottom} />
-        )
-    }
+    }, [])
 
     return (
         <div id='landing-page-new-user' className='container'>
@@ -58,7 +51,7 @@ const LandingPage = () => {
                 <div className="col-sm-12 col-md-2"></div>
                 <div className="col-sm-12 col-md-4">
                     <section id="featured-quote">
-                        <RenderFeaturedQuote featured={featuredQuoteProps.featured} top={featuredQuoteProps.top} bottom={featuredQuoteProps.bottom} />
+                        <FeaturedQuoteComponent featured={featuredQuoteProps.featured} top={featuredQuoteProps.top} bottom={featuredQuoteProps.bottom} />
                     </section>
                 </div>
             </div>
@@ -73,7 +66,7 @@ const LandingPage = () => {
                         Sign up or login to like the quotes<br />
                         and keep them saved in your profile</p>
 
-                    <QuotesListComponent loadMoreItems={getMostUpvotedQuotes} />
+                    <QuotesListComponent loadMoreItems={getQuotesOrEmptyList(quotesApi.getMostUpvotedQuotes)} />
                 </div>
                 <div className="d-md-none">
                     <h5 className='text-center text-color-primary'>Most liked quotes</h5>
@@ -84,11 +77,7 @@ const LandingPage = () => {
 
                     </p>
                     <div className="quotes-list">
-                        {
-                            quotes.map(q => (
-                                <QuoteComponent key={q.id} quote={q} />
-                            ))
-                        }
+                        <QuotesListComponent loadMoreItems={getQuotesOrEmptyList(quotesApi.getMostLikedQuotes)} />
                     </div>
 
                     <Link to='/signup' className="btn btn-alt centered">Sign up to see more</Link>

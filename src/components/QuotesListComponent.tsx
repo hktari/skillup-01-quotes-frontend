@@ -5,9 +5,10 @@ import QuoteComponent from './QuoteComponent'
 interface QuotesListProps {
     loadMoreItems: (startIdx: number, pageSize: number) => Promise<QuotesList>
     pageSize?: number
+    needsUpdate?: number
 }
 
-const QuotesListComponent = ({ loadMoreItems, pageSize = 10 }: QuotesListProps) => {
+const QuotesListComponent = ({ loadMoreItems, pageSize = 10, needsUpdate = 0 }: QuotesListProps) => {
     const [curPage, setCurPage] = useState(1)
     const [items, setItems] = useState<Quote[]>([])
     const [canLoadMore, setCanLoadMore] = useState(true)
@@ -24,7 +25,7 @@ const QuotesListComponent = ({ loadMoreItems, pageSize = 10 }: QuotesListProps) 
     // initialize
     useEffect(() => {
         onLoadMoreClicked()
-    }, [true])
+    }, [needsUpdate])
 
     function RenderQuotes({ count }: { count: number }) {
         return (
