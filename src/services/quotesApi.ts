@@ -25,7 +25,7 @@ async function getRandomQuote(): Promise<Quote> {
     }
 }
 
-async function getMostLikedQuotes(userId: number | null = null, startIdx: number = 0, pageSize: number = 10): Promise<QuotesList> {
+async function getMostLikedQuotes(startIdx: number = 0, pageSize: number = 10, userId: number | null = null): Promise<QuotesList> {
     let url = new URL(`/quotes/most-liked?startIdx=${startIdx}&pageSize=${pageSize}`, api_endpoint).href
     if (userId !== null) {
         url += `&userId=${userId}`

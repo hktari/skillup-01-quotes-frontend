@@ -9,23 +9,24 @@ interface QuotesListProps {
 }
 
 const QuotesListComponent = ({ loadMoreItems, pageSize = 10, needsUpdate = 0 }: QuotesListProps) => {
-    const [curPage, setCurPage] = useState(1)
+    const [curPage, setCurPage] = useState<number>(1)
     const [items, setItems] = useState<Quote[]>([])
     const [canLoadMore, setCanLoadMore] = useState(true)
     const loadItemsCountDesktop = 9
     const loadItemsCount = 4;
+
     async function onLoadMoreClicked() {
         const list = await loadMoreItems((curPage - 1) * pageSize, pageSize)
 
         setItems(items.concat(list.quotes))
         setCurPage(list.startIdx / list.pageSize + 1)
-        setCanLoadMore(list.startIdx + list.pageSize < list.totalQuotes)
+        setCanLoadMore(+list.startIdx + +list.pageSize < +list.totalQuotes)
     }
 
     // initialize
     useEffect(() => {
         onLoadMoreClicked()
-    }, [needsUpdate])
+    }, [])
 
     function RenderQuotes({ count }: { count: number }) {
         return (

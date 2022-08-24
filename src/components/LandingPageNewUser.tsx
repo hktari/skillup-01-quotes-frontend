@@ -60,6 +60,7 @@ const LandingPage = () => {
             <section id="explore-quotes">
                 <h2 className="d-none d-md-block text-center">Explore the world of <br /> <em>fantastic quotes</em> </h2>
                 <h4 className='d-md-none text-center'>Explore the world of <em>fantastic quotes</em> </h4>
+                {/* desktop */}
                 <div className="d-none d-md-block">
                     <h4 className="text-center"><em>Most upvoted quotes</em></h4>
                     <p className="text-body text-center">Most upvoted quotes on the platform.
@@ -68,6 +69,7 @@ const LandingPage = () => {
 
                     <QuotesListComponent loadMoreItems={getQuotesOrEmptyList(quotesApi.getMostUpvotedQuotes)} />
                 </div>
+                {/* mobile */}
                 <div className="d-md-none">
                     <h5 className='text-center text-color-primary'>Most liked quotes</h5>
                     <p className="text-body text-center">
@@ -77,7 +79,7 @@ const LandingPage = () => {
 
                     </p>
                     <div className="quotes-list">
-                        <QuotesListComponent loadMoreItems={getQuotesOrEmptyList(quotesApi.getMostLikedQuotes)} />
+                        <QuotesListComponent loadMoreItems={getQuotesOrEmptyList(quotesApi.getMostLikedQuotes)}/>
                     </div>
 
                     <Link to='/signup' className="btn btn-alt centered">Sign up to see more</Link>
