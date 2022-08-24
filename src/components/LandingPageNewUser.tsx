@@ -8,7 +8,6 @@ import QuotesListComponent from './QuotesListComponent'
 import { EmptyQuotesList } from '../util/util'
 
 const LandingPage = () => {
-    const [quotes, setQuotes] = useState<Quote[]>([])
     const [featuredQuoteProps, setFeaturedQuoteParams] = useState<FeaturedQuoteProps>({ top: null, bottom: null, featured: null })
 
 

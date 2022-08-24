@@ -13,12 +13,17 @@ const LandingPage = () => {
     const { user } = useAuth();
     const { quoteCount } = useQuotes();
     const [quoteOfTheDay, setQuoteOfTheDay] = useState<Quote | null>(null)
-    const [lastQuoteCount, setLastQuoteCount] = useState(0)
 
-    function QuoteOfTheDay() {
-        return (
-            <QuoteComponent quote={quoteOfTheDay} />
-        )
+    useEffect(() => {
+        loadQuoteOfTheDay()
+    }, [quoteCount])
+
+    async function loadQuoteOfTheDay() {
+        try {
+            setQuoteOfTheDay(await quotesApi.getRandomQuote())
+        } catch (error) {
+
+        }
     }
 
     async function loadMostLikedQuotes(startIdx: number, pageSize: number): Promise<QuotesList> {
@@ -58,7 +63,7 @@ const LandingPage = () => {
                 <p className="text-body text-center">
                     Quote of the day is randomly chosen quote
                 </p>
-                <QuoteOfTheDay />
+                <QuoteComponent quote={quoteOfTheDay} />
             </section>
 
 

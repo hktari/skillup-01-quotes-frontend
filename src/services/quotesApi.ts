@@ -37,7 +37,7 @@ async function getMostLikedQuotes(startIdx: number = 0, pageSize: number = 10, u
     return json as QuotesList;
 }
 
-async function getMostRecentQuotes(userId: number | null = null, startIdx: number = 0, pageSize: number = 10): Promise<QuotesList> {
+async function getMostRecentQuotes(startIdx: number = 0, pageSize: number = 10, userId: number | null = null): Promise<QuotesList> {
     let url = new URL(`/quotes/most-recent?startIdx=${startIdx}&pageSize=${pageSize}`, api_endpoint).href
     if (userId !== null) {
         url += `&userId=${userId}`
