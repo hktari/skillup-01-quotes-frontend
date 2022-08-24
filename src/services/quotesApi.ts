@@ -25,7 +25,7 @@ async function getRandomQuote(): Promise<Quote> {
     }
 }
 
-async function getMostLikedQuotes(userId: number | null = null, startIdx: number = 0, pageSize: number = 10): Promise<Quote[]> {
+async function getMostLikedQuotes(userId: number | null = null, startIdx: number = 0, pageSize: number = 10): Promise<QuotesList> {
     let url = new URL(`/quotes/most-liked?startIdx=${startIdx}&pageSize=${pageSize}`, api_endpoint).href
     if (userId !== null) {
         url += `&userId=${userId}`
@@ -34,10 +34,10 @@ async function getMostLikedQuotes(userId: number | null = null, startIdx: number
     console.log('getMostLikedQuotes', url);
     const response = await fetch(url, { method: 'GET' })
     const json = await response.json()
-    return json as Quote[];
+    return json as QuotesList;
 }
 
-async function getMostRecentQuotes(userId: number | null = null, startIdx: number = 0, pageSize: number = 10): Promise<Quote[]> {
+async function getMostRecentQuotes(userId: number | null = null, startIdx: number = 0, pageSize: number = 10): Promise<QuotesList> {
     let url = new URL(`/quotes/most-recent?startIdx=${startIdx}&pageSize=${pageSize}`, api_endpoint).href
     if (userId !== null) {
         url += `&userId=${userId}`
@@ -52,13 +52,7 @@ async function getMostUpvotedQuotes(startIdx: number = 0, pageSize: number = 10)
     // todo: fix endpoint
     let url = new URL(`/quotes/most-recent?startIdx=${startIdx}&pageSize=${pageSize}`, api_endpoint).href
     const response = await fetch(url, { method: 'GET' })
-    const itemsList = await response.json()
-    const quotesList = EmptyQuotesList()
-    quotesList.pageSize = pageSize;
-    quotesList.startIdx = startIdx;
-    quotesList.totalQuotes = 21;
-    quotesList.quotes = itemsList
-    return quotesList
+    return await response.json()
 
 }
 

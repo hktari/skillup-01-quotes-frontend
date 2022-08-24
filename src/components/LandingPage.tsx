@@ -13,38 +13,6 @@ const LandingPage = () => {
     const { user } = useAuth();
     const { quoteCount } = useQuotes();
     const [quoteOfTheDay, setQuoteOfTheDay] = useState<Quote | null>(null)
-    const [mostLikedQuotes, setMostLikedQuotes] = useState<Quote[]>([])
-    const [mostRecentQuotes, setMostRecentQuotes] = useState<Quote[]>([])
-
-    console.log('refreshing LandingPage...')
-
-    useEffect(() => {
-        async function fetchRandomQuote() {
-            setQuoteOfTheDay(await quotesApi.getRandomQuote())
-        }
-        fetchRandomQuote();
-    }, [user])
-
-    useEffect(() => {
-        // todo: pagination
-
-        async function fetchMostLikedQuotes() {
-            setMostLikedQuotes(await quotesApi.getMostLikedQuotes())
-
-        }
-
-        fetchMostLikedQuotes();
-    }, [user])
-
-    useEffect(() => {
-        console.log('refreshing most recent quotes...')
-
-        // todo: pagination
-        async function fetchMostRecentQuotes() {
-            setMostRecentQuotes(await quotesApi.getMostRecentQuotes())
-        }
-        fetchMostRecentQuotes();
-    }, [user, quoteCount])
 
 
     function QuoteOfTheDay() {
@@ -53,28 +21,14 @@ const LandingPage = () => {
         )
     }
 
-    function MostLikedQuotes() {
-        return (
-            <div className="quotes-list">
-                {mostLikedQuotes.map(q => <QuoteComponent key={q.id} quote={q} />)}
-
-                <button className="btn btn-alt centered btn-wide">
-                    load more
-                </button>
-            </div>
-        )
-    }
-
-    function MostRecentQuotes() {
-        return (
-            <div className="quotes-list">
-                {mostRecentQuotes.map(q => <QuoteComponent key={q.id} quote={q} />)}
-
-                <button className="btn btn-alt centered btn-wide">
-                    load more
-                </button>
-            </div>
-        )
+    async function loadMostLikedQuotes(startIdx: number, pageSize: number): Promise<QuotesList> {
+        try {
+            return await quotesApi.getMostLikedQuotes(startIdx, pageSize)
+        } catch (error) {
+            console.error(error)
+            window.alert('Error occured loading quotes')
+            return EmptyQuotesList()
+        }
     }
 
     async function loadMostUpvotedQuotes(startIdx: number, pageSize: number): Promise<QuotesList> {
@@ -87,6 +41,15 @@ const LandingPage = () => {
         }
     }
 
+    async function loadMostRecentQuotes(startIdx: number, pageSize: number): Promise<QuotesList> {
+        try {
+            return await quotesApi.getMostRecentQuotes(startIdx, pageSize)
+        } catch (error) {
+            console.error(error)
+            window.alert('Error occured loading quotes')
+            return EmptyQuotesList()
+        }
+    }
 
     return (
         <div id='landing-page' className="container">
@@ -115,14 +78,14 @@ const LandingPage = () => {
                     <p className="text-body text-center">
                         Most liked quotes on the platform.  Sign up or login to like the quotes  and keep them saved in your profile
                     </p>
-                    <MostLikedQuotes />
+                    <QuotesListComponent loadMoreItems={loadMostLikedQuotes} />
                 </section>
                 <section id="most-recent-quotes">
                     <h5 className='text-color-primary'>Most recent quotes</h5>
                     <p className="text-body">
                         Recent quotes updates as soon user adds new quote. Go ahed show them that you seen the new quote and like the ones you like.
                     </p>
-                    <MostRecentQuotes />
+                    <QuotesListComponent loadMoreItems={loadMostRecentQuotes} />
                 </section>
             </div>
             <div className="white-space"></div>
