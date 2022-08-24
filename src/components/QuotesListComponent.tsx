@@ -1,3 +1,4 @@
+import { listenerCount } from 'process'
 import React, { useEffect, useState } from 'react'
 import { Quote, QuotesList } from '../services/interface'
 import QuoteComponent from './QuoteComponent'
@@ -15,8 +16,8 @@ const QuotesListComponent = ({ loadMoreItems, pageSize = 10, needsUpdate = 0 }: 
     const loadItemsCountDesktop = 9
     const loadItemsCount = 4;
 
-    async function onLoadMoreClicked() {
-        const list = await loadMoreItems((curPage - 1) * pageSize, pageSize)
+    async function onLoadMoreClicked(page?: number) {
+        const list = await loadMoreItems((page ?? curPage - 1) * pageSize, pageSize)
 
         setItems(items.concat(list.quotes))
         setCurPage(list.startIdx / list.pageSize + 1)
@@ -25,8 +26,14 @@ const QuotesListComponent = ({ loadMoreItems, pageSize = 10, needsUpdate = 0 }: 
 
     // initialize
     useEffect(() => {
+        setItems([])
         onLoadMoreClicked()
-    }, [])
+    }, [needsUpdate])
+
+
+    function onLoadMoreClickedInternal() {
+        onLoadMoreClicked(curPage + 1);
+    }
 
     function RenderQuotes({ count }: { count: number }) {
         return (
@@ -45,7 +52,7 @@ const QuotesListComponent = ({ loadMoreItems, pageSize = 10, needsUpdate = 0 }: 
                 <RenderQuotes count={curPage * loadItemsCount} />
             </div>
 
-            <button hidden={!canLoadMore} className="btn btn-alt centered btn-wide" onClick={() => onLoadMoreClicked()}>
+            <button hidden={!canLoadMore} className="btn btn-alt centered btn-wide" onClick={() => onLoadMoreClickedInternal()}>
                 load more
             </button>
         </div>

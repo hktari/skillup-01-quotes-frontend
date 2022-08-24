@@ -81,7 +81,7 @@ const LandingPage = () => {
                         <QuotesListComponent loadMoreItems={getQuotesOrEmptyList(quotesApi.getMostLikedQuotes)}/>
                     </div>
 
-                    <Link to='/signup' className="btn btn-alt centered">Sign up to see more</Link>
+                    <Link to='/signup' className="btn btn-alt centered mt-5">Sign up to see more</Link>
                 </div>
                 <div className="white-space">
                 </div>
