@@ -33,7 +33,7 @@ const UserProfilePage = (props: Props) => {
 
 
     async function LoadUserLikedQuotes(startIdx: number, pageSize: number) {
-        return await usersApi.getUserLikedQuotes(user.id, startIdx, pageSize)
+        return await quotesApi.getMostLikedQuotes(startIdx, pageSize, user.id)
     }
 
     return (
@@ -63,7 +63,7 @@ const UserProfilePage = (props: Props) => {
                     </div>
                 </section>
                 <div className="container body">
-                    <div className="d-sm-none d-md-block">
+                    <div className="d-none d-md-block">
                         <div className="row">
                             <div className="col-md-4">
                                 <section className="most-liked-quotes">
@@ -95,7 +95,7 @@ const UserProfilePage = (props: Props) => {
                             <h5><em>Most recent quotes</em></h5>
                             <QuotesListComponent loadMoreItems={getQuotesOrEmptyList(quotesApi.getMostRecentQuotes)} />
                         </section>
-                        <section className="liked-quotes">
+                        <section className="most-liked-quotes">
                             <h5><em>Likes</em></h5>
                             <QuotesListComponent loadMoreItems={LoadUserLikedQuotes} />
                         </section>

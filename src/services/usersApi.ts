@@ -33,24 +33,9 @@ async function getUser(id: number): Promise<User> {
     }
 }
 
-async function getUserLikedQuotes(id: number, startIdx: number = 0, pageSize: number = 10): Promise<QuotesList> {
-    const url = new URL(`/users/${id}/liked-quotes?startIdx=${startIdx}&pageSize=${pageSize}`, api_endpoint)
-    const response = await fetch(url.href, {
-        method: 'GET',
-        headers: getHeaders()
-    })
-
-    if (response.ok) {
-        return (await response.json()) as QuotesList
-    } else {
-        throw new APIError(`failed to get liked quotes for user ${id}`, response.statusText)
-    }
-}
-
 const usersApi = {
     loadMyProfile,
-    getUser,
-    getUserLikedQuotes
+    getUser
 }
 
 export default usersApi;

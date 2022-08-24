@@ -502,15 +502,15 @@ $stats-shiftdown-amount: 22px;
   }
 
   .most-liked-quotes {
-    margin-top: calc(40px + $stats-shiftdown-amount);
+    margin-top: calc(80px + $stats-shiftdown-amount);
   }
 
   .text-orange {
     color: $primary;
   }
 
-  .most-recent-quotes {
-    margin-top: 34px;
+  .most-recent-quotes, .most-liked-quotes {
+    margin-top: 74px;
   }
 
 }
